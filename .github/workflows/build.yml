@@ -1,0 +1,56 @@
+name: Build Mac installer
+
+# Runs when you push a version tag (git tag v1.0.0 && git push --tags),
+# or by hand from the Actions tab ("Run workflow").
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+jobs:
+  build-mac:
+    permissions:
+      contents: write
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-apple-darwin,x86_64-apple-darwin
+
+      - uses: swatinem/rust-cache@v2
+        with:
+          workspaces: './src-tauri -> target'
+
+      - run: npm ci
+
+      - name: Check the diary storage
+        run: cargo test --manifest-path src-tauri/Cargo.toml --lib
+
+      - uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tagName: v__VERSION__
+          releaseName: Mochi Diary v__VERSION__
+          releaseBody: |
+            Download the .dmg, open it and drag Mochi Diary into Applications.
+            It runs on Apple Silicon and Intel Macs (macOS 11 or later).
+            The first launch shows a warning because the app isn't signed; see the README for the one-time step.
+          releaseDraft: true
+          prerelease: false
+          # one .dmg that runs on both Apple Silicon and Intel Macs
+          args: '--target universal-apple-darwin'
+
+      # The .dmg is also attached to the run itself, for builds started by hand.
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Mochi-Diary-mac
+          path: src-tauri/target/universal-apple-darwin/release/bundle/dmg/*.dmg
+          if-no-files-found: error

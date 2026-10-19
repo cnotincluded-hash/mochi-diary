@@ -1,0 +1,17 @@
+{
+  "name": "mochi-diary",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Mochi Diary desktop app",
+  "scripts": {
+    "page": "node scripts/make-dist.mjs",
+    "dev": "tauri dev",
+    "build": "tauri build",
+    "tauri": "tauri"
+  },
+  "devDependencies": {
+    "@fontsource/m-plus-rounded-1c": "5.3.0",
+    "@fontsource/mochiy-pop-one": "5.3.0",
+    "@tauri-apps/cli": "2.12.3"
+  }
+}

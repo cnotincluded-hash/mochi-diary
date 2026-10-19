@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.35" y2="1">
+      <stop offset="0" stop-color="#FFE3EC"/>
+      <stop offset="1" stop-color="#FFB9CF"/>
+    </linearGradient>
+    <pattern id="dots" width="64" height="64" patternUnits="userSpaceOnUse">
+      <circle cx="16" cy="16" r="6" fill="#FFFFFF" opacity=".55"/>
+      <circle cx="48" cy="48" r="6" fill="#FFFFFF" opacity=".55"/>
+    </pattern>
+    <clipPath id="sq"><rect x="100" y="100" width="824" height="824" rx="185"/></clipPath>
+  </defs>
+  <g clip-path="url(#sq)">
+    <rect x="100" y="100" width="824" height="824" fill="url(#bg)"/>
+    <rect x="100" y="100" width="824" height="824" fill="url(#dots)"/>
+  </g>
+  <rect x="100" y="100" width="824" height="824" rx="185" fill="none" stroke="#FFFFFF" stroke-opacity=".6" stroke-width="6"/>
+  <!-- the mochi, from the app's own drawing (viewBox 120x108), scaled up -->
+  <g transform="translate(152 196) scale(6)">
+    <ellipse cx="60" cy="101" rx="36" ry="4.6" fill="#4B3646" opacity=".14"/>
+    <path d="M14 78 C12 46 34 22 60 22 C86 22 108 46 106 78 C105 92 86 98 60 98 C34 98 15 92 14 78Z" fill="#FFF6F9" stroke="#4B3646" stroke-width="3.2"/>
+    <ellipse cx="40" cy="40" rx="11" ry="5.5" transform="rotate(-28 40 40)" fill="#fff" opacity=".85"/>
+    <circle cx="56" cy="31" r="2.2" fill="#fff" opacity=".7"/>
+    <circle cx="84" cy="40" r="1.6" fill="#FFC6D7"/>
+    <circle cx="92" cy="54" r="1.3" fill="#FFC6D7"/>
+    <circle cx="28" cy="84" r="1.5" fill="#FFC6D7"/>
+    <circle cx="88" cy="86" r="1.3" fill="#FFC6D7"/>
+    <ellipse cx="34" cy="71" rx="8.2" ry="4.6" fill="#FF9DB8" opacity=".75"/>
+    <ellipse cx="86" cy="71" rx="8.2" ry="4.6" fill="#FF9DB8" opacity=".75"/>
+    <path d="M40 62 Q46 54 52 62M68 62 Q74 54 80 62" fill="none" stroke="#4B3646" stroke-width="3.6" stroke-linecap="round"/>
+    <path d="M52 69 Q60 81 68 69Z" fill="#8C3A55" stroke="#4B3646" stroke-width="2.4" stroke-linejoin="round"/>
+    <path d="M56 74.5 Q60 72 64 74.5 Q60 78.5 56 74.5Z" fill="#FF8FAE"/>
+    <path d="M101 22 C96 18 97 13 100 13 C101.4 13 102 14.4 102 15 C102 14.4 102.6 13 104 13 C107 13 108 18 101 22Z" fill="#FF5C8A" stroke="#4B3646" stroke-width="1.2"/>
+  </g>
+</svg>
