@@ -935,11 +935,15 @@ class CloudStore {
   unsubscribe() { try { this.u1 && this.u1(); this.u2 && this.u2(); } catch {} }
 }
 
-/* ================= desktop app: the diary lives in files on the Mac ================= */
+/* ================= desktop app: the diary lives in files on the computer ================= */
 // Only present in the Mochi Diary desktop app (Tauri). The Rust side keeps
 // mochi.json, Entries/<id>.json, Reports/<id>.json and Photos/<id>.jpg in the
 // app's own data folder.
 const TAURI = (() => { try { const T = window.__TAURI__; return T && T.core && typeof T.core.invoke === 'function' ? T : null; } catch { return null; } })();
+// Wording for the computer the desktop app runs on (Windows app vs Mac app).
+const ON_WIN = (() => { try { return /Windows/i.test(navigator.userAgent || '') || /^Win/i.test(navigator.platform || ''); } catch { return false; } })();
+const HOST = ON_WIN ? 'PC' : 'Mac';
+const FOLDER_APP = ON_WIN ? 'File Explorer' : 'Finder';
 class DesktopStore {
   constructor(T) { this.kind = 'file'; this.T = T; this.folder = ''; this.q = new Map(); }
   call(cmd, args) { return this.T.core.invoke(cmd, args); }
@@ -968,7 +972,7 @@ class DesktopStore {
   async clearAll() { await Promise.all([...this.q.values()].map(p => p.catch(() => {}))); await this.call('clear_diary'); }
 }
 if (TAURI) {
-  // Links open in the Mac's browser instead of inside the app window.
+  // Links open in the computer's browser instead of inside the app window.
   document.addEventListener('click', ev => {
     const a = ev.target && ev.target.closest && ev.target.closest('a[href]');
     if (!a || !/^(https?:|mailto:)/i.test(a.getAttribute('href') || '')) return;
@@ -2209,8 +2213,8 @@ function refreshYou() {
   const quick = S.entries.filter(e => !e.example && e.ai && e.ai.src === 'quick' && e.status !== 'reading').length;
   const ai = AI.state === 'ready' ? ['On', 'Mochi reads your days with Claude, using your own Claude account. Only what you write is sent, and only when Mochi reads it.']
     : AI.state === 'off' ? ['Off in this view', "Claude wasn't allowed, so Mochi does quick reads on this device. Reload the page to be asked again."]
-    : AI.state === 'wait' ? ['Checking…', 'Looking for Claude.'] : TAURI ? ['Quick reads', 'Mochi reads your days right here on your Mac, so nothing you write leaves it. Smart reads with Claude happen when Mochi Diary is opened inside Claude.'] : ['Quick reads only', 'Open Mochi Diary inside Claude for smart reads, cards and deep dives. Quick reads work anywhere.'];
-  const where = S.store.kind === 'cloud' ? 'Saved privately to your Claude account, so it follows you across devices. Nobody else who opens this page can see it.' : S.store.kind === 'file' ? 'Saved as files on this Mac, in Mochi Diary\u2019s own folder. Photos are kept as ordinary images.' : TAURI ? "Your diary folder couldn't be opened, so this window isn't saving. Quit and reopen Mochi Diary." : 'Saved in this browser only. Open Mochi Diary inside Claude to keep it in your account.';
+    : AI.state === 'wait' ? ['Checking…', 'Looking for Claude.'] : TAURI ? ['Quick reads', `Mochi reads your days right here on your ${HOST}, so nothing you write leaves it. Smart reads with Claude happen when Mochi Diary is opened inside Claude.`] : ['Quick reads only', 'Open Mochi Diary inside Claude for smart reads, cards and deep dives. Quick reads work anywhere.'];
+  const where = S.store.kind === 'cloud' ? 'Saved privately to your Claude account, so it follows you across devices. Nobody else who opens this page can see it.' : S.store.kind === 'file' ? `Saved as files on this ${HOST}, in Mochi Diary\u2019s own folder. Photos are kept as ordinary images.` : TAURI ? "Your diary folder couldn't be opened, so this window isn't saving. Quit and reopen Mochi Diary." : 'Saved in this browser only. Open Mochi Diary inside Claude to keep it in your account.';
   const flv = FLAVORS.map(f => `<button class="flv flv-${f.id}" data-act="flavor" data-f="${f.id}" aria-pressed="${M.flavor === f.id}">${mochiSVG('happy')}${f.name}</button>`).join('');
   $('#y-body', L).innerHTML = `
     <div class="welcome" style="padding:0;gap:6px">${mochiSVG('love')}</div>
@@ -2227,7 +2231,7 @@ function refreshYou() {
       <div class="srow2">${ic('sparkle')}<span class="t"><b>Smart reads: ${ai[0]}</b><span>${ai[1]}</span></span></div>
       ${quick && aiOK() ? `<button class="srow2" data-act="reread-quick">${ic('refresh')}<span class="t"><b>Read ${quick} quick-read day${quick > 1 ? 's' : ''} properly</b><span>Mochi reads them one at a time</span></span></button>` : ''}
       <div class="srow2">${ic('diary')}<span class="t"><b>Where your diary lives</b><span>${where}</span></span></div>
-      ${S.store.kind === 'file' ? `<button class="srow2" data-act="show-folder">${ic('folder')}<span class="t"><b>Show in Finder</b><span>Open the folder that holds your days and photos</span></span></button>` : ''}
+      ${S.store.kind === 'file' ? `<button class="srow2" data-act="show-folder">${ic('folder')}<span class="t"><b>Show in ${FOLDER_APP}</b><span>Open the folder that holds your days and photos</span></span></button>` : ''}
     </div>
     <div class="grp">
       <button class="srow2" data-act="export-json">${ic('download')}<span class="t"><b>Back up everything</b><span>A .json file with your days, photos and reports</span></span></button>
@@ -2281,7 +2285,7 @@ async function pinPress(d) {
 /* ================= welcome ================= */
 function openWelcome() {
   if (layerById('welcome')) return;
-  const where = S.store.kind === 'cloud' ? 'Your diary is private to you and saved to your Claude account.' : S.store.kind === 'file' ? 'Your diary is saved on this Mac.' : 'Your diary is saved in this browser.';
+  const where = S.store.kind === 'cloud' ? 'Your diary is private to you and saved to your Claude account.' : S.store.kind === 'file' ? `Your diary is saved on this ${HOST}.` : 'Your diary is saved in this browser.';
   openLayer(`<div class="sheet" role="dialog" aria-modal="true" aria-label="Welcome"><div class="sh-body"><div class="welcome">
     <div class="boing">${mochiSVG('happy')}</div>
     <h1>Hi, I'm Mochi!</h1>

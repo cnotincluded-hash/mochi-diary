@@ -1,6 +1,6 @@
 [package]
 name = "mochi-diary"
-version = "1.0.0"
+version = "1.1.0"
 description = "Mochi Diary: a cute diary buddy that reads your day"
 authors = ["Caffeine Not Included"]
 edition = "2021"

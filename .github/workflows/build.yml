@@ -1,6 +1,8 @@
-name: Build Mac installer
+name: Build installers
 
-# Runs when you push a version tag (git tag v1.0.0 && git push --tags),
+# Builds the Mac .dmg and the Windows installers (.exe and .msi) and puts them
+# all in one draft release.
+# Runs when you push a version tag (git tag v1.1.0 && git push --tags),
 # or by hand from the Actions tab ("Run workflow").
 on:
   push:
@@ -8,10 +10,29 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-mac:
+  build:
     permissions:
       contents: write
-    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: mac
+            os: macos-latest
+            rust-targets: aarch64-apple-darwin,x86_64-apple-darwin
+            # one .dmg that runs on both Apple Silicon and Intel Macs
+            args: '--target universal-apple-darwin'
+            files: |
+              src-tauri/target/universal-apple-darwin/release/bundle/dmg/*.dmg
+          - name: windows
+            os: windows-latest
+            rust-targets: ''
+            args: ''
+            files: |
+              src-tauri/target/release/bundle/nsis/*.exe
+              src-tauri/target/release/bundle/msi/*.msi
+    name: Build (${{ matrix.name }})
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
 
@@ -22,7 +43,7 @@ jobs:
 
       - uses: dtolnay/rust-toolchain@stable
         with:
-          targets: aarch64-apple-darwin,x86_64-apple-darwin
+          targets: ${{ matrix.rust-targets }}
 
       - uses: swatinem/rust-cache@v2
         with:
@@ -44,17 +65,18 @@ jobs:
           tagName: v__VERSION__
           releaseName: Mochi Diary v__VERSION__
           releaseBody: |
-            Download the .dmg, open it and drag Mochi Diary into Applications.
-            It runs on Apple Silicon and Intel Macs (macOS 11 or later).
+            **Windows:** download `Mochi Diary_x.x.x_x64-setup.exe` and run it. It installs just for you, so no admin password is needed. (The `.msi` is the same app for anyone who prefers it.) Windows 10 or 11.
+            Because the app isn't signed yet, SmartScreen may say "Windows protected your PC": click **More info**, then **Run anyway**.
+
+            **Mac:** download the `.dmg`, open it and drag Mochi Diary into Applications. It runs on Apple Silicon and Intel Macs (macOS 11 or later).
             The first launch shows a warning because the app isn't signed; see the README for the one-time step.
           releaseDraft: true
           prerelease: false
-          # one .dmg that runs on both Apple Silicon and Intel Macs
-          args: '--target universal-apple-darwin'
+          args: ${{ matrix.args }}
 
-      # The .dmg is also attached to the run itself, for builds started by hand.
+      # The installers are also attached to the run itself, for builds started by hand.
       - uses: actions/upload-artifact@v4
         with:
-          name: Mochi-Diary-mac
-          path: src-tauri/target/universal-apple-darwin/release/bundle/dmg/*.dmg
+          name: Mochi-Diary-${{ matrix.name }}
+          path: ${{ matrix.files }}
           if-no-files-found: error

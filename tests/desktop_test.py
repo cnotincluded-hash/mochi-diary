@@ -10,6 +10,13 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 ROOT = Path(sys.argv[1]).resolve()
+# Second argument picks the computer to act as: mac (default) or windows.
+OS = (sys.argv[2] if len(sys.argv) > 2 else 'mac').lower()
+HOST, FOLDER_APP = ('PC', 'File Explorer') if OS == 'windows' else ('Mac', 'Finder')
+UA = {
+    'mac': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko)',
+    'windows': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0',
+}[OS]
 DIST = ROOT / 'dist'
 results = []
 
@@ -112,7 +119,7 @@ def run():
 
     with sync_playwright() as p:
         browser = p.chromium.launch()
-        ctx = browser.new_context(viewport={'width': 520, 'height': 900})
+        ctx = browser.new_context(viewport={'width': 520, 'height': 900}, user_agent=UA)
 
         def route(r):
             if r.request.url.startswith('file://'): r.continue_()
@@ -139,7 +146,7 @@ def run():
 
         load()
         check('First launch shows the welcome sheet', page.locator('#w-name').is_visible())
-        check('Welcome says the diary is saved on this Mac', 'saved on this Mac' in page.inner_text('body'))
+        check(f'Welcome says the diary is saved on this {HOST}', f'saved on this {HOST}' in page.inner_text('body'))
         fonts = page.evaluate("""async () => { await document.fonts.ready;
           return [document.fonts.check('400 20px "Mochiy Pop One"', 'Hi'), document.fonts.check('700 16px "M PLUS Rounded 1c"', 'Hi')]; }""")
         page.evaluate("""() => new Promise(r => { const t = document.createElement('span'); t.style.font = '400 20px "Mochiy Pop One"'; t.textContent = 'Mochi'; document.body.append(t); document.fonts.load('400 20px "Mochiy Pop One"').then(() => r()); })""")
@@ -180,11 +187,12 @@ def run():
         # You sheet
         page.click('[data-act="you"]'); page.wait_for_timeout(500)
         body = page.inner_text('body')
-        check('You sheet says the diary is saved as files on this Mac', 'Saved as files on this Mac' in body)
-        check('Smart reads line explains quick reads on the Mac', 'right here on your Mac' in body)
+        check(f'You sheet says the diary is saved as files on this {HOST}', f'Saved as files on this {HOST}' in body)
+        check(f'Smart reads line explains quick reads on the {HOST}', f'right here on your {HOST}' in body)
+        check(f'Folder button says Show in {FOLDER_APP}', f'Show in {FOLDER_APP}' in body)
         check('Restore mentions backups from Claude', 'from Mochi Diary in Claude' in body)
         page.click('[data-act="show-folder"]'); page.wait_for_timeout(200)
-        check('Show in Finder calls the shell', any(c[0] == 'show_diary_folder' for c in shell.calls if isinstance(c, tuple)))
+        check(f'Show in {FOLDER_APP} calls the shell', any(c[0] == 'show_diary_folder' for c in shell.calls if isinstance(c, tuple)))
 
         page.click('[data-act="export-json"]'); page.wait_for_timeout(1500)
         bk = next((v for k, v in shell.saved.items() if k.endswith('.json')), None)
@@ -270,7 +278,7 @@ def run():
         browser.close()
     shutil.rmtree(tmp, ignore_errors=True)
     passed = sum(ok for _, ok in results)
-    print(f'\n{passed} of {len(results)} pass')
+    print(f'\n{passed} of {len(results)} pass ({OS})')
     return passed == len(results)
 
 
