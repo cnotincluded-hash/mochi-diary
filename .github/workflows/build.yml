@@ -30,6 +30,10 @@ jobs:
 
       - run: npm ci
 
+      # Tauri won't compile until the page it bundles exists.
+      - name: Build the app page
+        run: npm run page
+
       - name: Check the diary storage
         run: cargo test --manifest-path src-tauri/Cargo.toml --lib
 
