@@ -22,11 +22,6 @@ Get the latest version from the [Releases](../../releases) page: `Mochi Diary_x.
    - **macOS 14 or earlier:** right-click (or Control-click) the app, choose **Open**, then **Open** again.
 3. After that it opens normally.
 
-If macOS says the app "is damaged and can't be opened", run this once in Terminal, then open it again:
-
-```
-xattr -cr "/Applications/Mochi Diary.app"
-```
 
 ## Where your diary lives
 
@@ -45,33 +40,7 @@ Your diary is a folder of ordinary files. **You → Show in Finder** opens it.
 - **Back up everything** saves one `.json` with your days, photos and reports wherever you choose. Keep a copy somewhere safe (iCloud Drive, a USB stick), because a diary on one computer is only as safe as that computer.
 - The passcode locks the app. The files themselves are plain text, so keep your Mac's login password on.
 
-### Moving over from Mochi Diary in Claude
 
-In the Claude version, open **You → Back up everything**. In the Mac app, open **You → Restore a backup** and pick that file. Your days, photos and reports come across; nothing is overwritten.
-
-## Smart reads
-
-Inside Claude, Mochi reads each day with Claude. The Mac app runs on its own, so it uses **quick reads**: Mochi scores your day from the words you use, picks stickers, people and an animal, and builds cards and reports from your scores. All of it happens on your Mac.
-
-## Build it yourself
-
-Pushing a version tag builds the installer on GitHub:
-
-```
-git tag v1.0.0
-git push --tags
-```
-
-The **Build Mac installer** workflow runs the storage tests, builds one universal `.dmg` and puts it in a draft release (open **Releases**, check it, click **Publish**). You can also start it from the **Actions** tab with **Run workflow**; the `.dmg` is then attached to the run under *Artifacts*.
-
-To build on a Mac instead, you need [Node.js](https://nodejs.org) 22 and [Rust](https://rustup.rs):
-
-```
-npm install
-npm run build
-```
-
-The app ends up in `src-tauri/target/release/bundle/dmg/`. `npm run dev` opens it with live reload.
 
 ## How it's put together
 
