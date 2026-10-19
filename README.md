@@ -32,7 +32,7 @@ Your diary is a folder of ordinary files. **You → Show in Finder** opens it.
   mochi.json            your name, notes, tone, flavour, passcode and cards
   Entries/<id>.json     one file per day
   Reports/<id>.json     deep-dive reports
-  Photos/<id>.jpg       your photos at full size
+  Photos/<id>.jpg       your photos at full size.
 ```
 
 - Every save goes to a temporary file first and then replaces the old one, so a crash never leaves half a file.
