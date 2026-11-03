@@ -283,17 +283,34 @@ async fn save_export(app: AppHandle, filename: String, contents: String) -> Resu
     }
     match dialog.blocking_save_file() {
         None => Ok(None),
+        #[cfg(desktop)]
         Some(choice) => {
             let path = choice.as_path().ok_or_else(|| "that location can’t be saved to.".to_string())?.to_path_buf();
             fs::write(&path, contents).map_err(|e| format!("couldn’t write {}: {e}", path.display()))?;
             Ok(Some(path.file_name().map(|n| n.to_string_lossy().into_owned()).unwrap_or_default()))
+        }
+        // On a phone the save sheet hands back a content:// link, not a plain path,
+        // so the file is opened through the fs plugin.
+        #[cfg(mobile)]
+        Some(choice) => {
+            use std::io::Write;
+            use tauri_plugin_fs::{FsExt, OpenOptions};
+            let mut opts = OpenOptions::new();
+            opts.write(true).create(true).truncate(true);
+            let mut file = app.fs().open(choice, opts).map_err(|e| format!("couldn’t save {filename}: {e}"))?;
+            file.write_all(contents.as_bytes()).map_err(|e| format!("couldn’t save {filename}: {e}"))?;
+            Ok(Some(filename))
         }
     }
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
-    tauri::Builder::default()
+    let builder = tauri::Builder::default();
+    // Phones need the fs plugin to write exports to the place picked in the save sheet.
+    #[cfg(mobile)]
+    let builder = builder.plugin(tauri_plugin_fs::init());
+    builder
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_opener::init())
         .invoke_handler(tauri::generate_handler![

@@ -1,0 +1,8 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Night bakery: dark paper with light status bar icons. -->
+    <style name="Theme.mochi_diary" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/mochi_paper</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">false</item>
+    </style>
+</resources>

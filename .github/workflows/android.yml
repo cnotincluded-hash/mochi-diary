@@ -1,0 +1,111 @@
+name: Build Android APK
+
+# Builds an installable Mochi Diary .apk for Android phones (64-bit ARM, which is
+# every phone from the last several years) and attaches it to the run and to a
+# draft release.
+#
+# Signing: add three repository secrets (Settings → Secrets and variables → Actions):
+#   ANDROID_KEYSTORE      the .jks file, base64-encoded
+#   ANDROID_KEY_ALIAS     mochidiary
+#   ANDROID_KEY_PASSWORD  the keystore password
+# Keep the same key forever: Android only installs an update over the app if it's
+# signed with the same key. Without the secrets the run makes a one-off test key,
+# and that APK can't be updated in place later (uninstall first, after a backup).
+on:
+  push:
+    tags: ['v*']
+    branches: [main]
+    paths:
+      - 'src-tauri/**'
+      - 'web/**'
+      - 'scripts/**'
+      - '.github/workflows/android.yml'
+  workflow_dispatch:
+
+jobs:
+  apk:
+    name: Build (android)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-linux-android
+
+      - uses: swatinem/rust-cache@v2
+        with:
+          workspaces: './src-tauri -> target'
+          key: android
+
+      - run: npm ci
+
+      - name: Set up signing
+        env:
+          KEYSTORE: ${{ secrets.ANDROID_KEYSTORE }}
+          ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          cd src-tauri/gen/android
+          if [ -n "$KEYSTORE" ]; then
+            echo "$KEYSTORE" | base64 -d > release.jks
+            echo "SIGNED_WITH=release" >> "$GITHUB_ENV"
+          else
+            echo "::warning::No ANDROID_KEYSTORE secret, so this APK is signed with a one-off test key."
+            ALIAS=mochidiary
+            PASSWORD=$(openssl rand -hex 16)
+            keytool -genkeypair -keystore release.jks -alias "$ALIAS" -keyalg RSA -keysize 2048 \
+              -validity 10000 -storepass "$PASSWORD" -keypass "$PASSWORD" -dname "CN=Mochi Diary test build"
+            echo "SIGNED_WITH=test" >> "$GITHUB_ENV"
+          fi
+          {
+            echo "storeFile=$PWD/release.jks"
+            echo "storePassword=$PASSWORD"
+            echo "keyAlias=$ALIAS"
+            echo "keyPassword=$PASSWORD"
+          } > keystore.properties
+
+      - name: Build the APK
+        run: NDK_HOME="$ANDROID_NDK_LATEST_HOME" npx tauri android build --apk --target aarch64
+
+      - name: Name the APK
+        run: |
+          VERSION=$(node -p "require('./src-tauri/tauri.conf.json').version")
+          SRC=$(find src-tauri/gen/android/app/build/outputs/apk -name '*release*.apk' | head -1)
+          echo "Built $SRC"
+          case "$SRC" in *unsigned*) echo "::error::APK came out unsigned"; exit 1;; esac
+          SUFFIX=""; [ "$SIGNED_WITH" = test ] && SUFFIX="_test-key"
+          OUT="Mochi Diary_${VERSION}_android-arm64${SUFFIX}.apk"
+          mkdir -p out && cp "$SRC" "out/$OUT"
+          "$ANDROID_HOME"/build-tools/$(ls "$ANDROID_HOME/build-tools" | sort -V | tail -1)/apksigner verify --print-certs "out/$OUT" | head -3
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+          echo "APK=out/$OUT" >> "$GITHUB_ENV"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Mochi-Diary-android
+          path: ${{ env.APK }}
+          if-no-files-found: error
+
+      - name: Attach to the draft release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="android-v$VERSION"
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            gh release create "$TAG" --draft --target "$GITHUB_SHA" --title "Mochi Diary for Android v$VERSION" \
+              --notes "Download the .apk on your Android phone and open it. Android will ask to allow installs from your browser or Files app the first time; allow it, then tap Install. Needs Android 7 or later on a 64-bit phone. The app isn't from the Play Store, so Play Protect may show a warning: tap **More details → Install anyway**."
+          fi
+          gh release upload "$TAG" "$APK" --clobber

@@ -942,7 +942,9 @@ class CloudStore {
 const TAURI = (() => { try { const T = window.__TAURI__; return T && T.core && typeof T.core.invoke === 'function' ? T : null; } catch { return null; } })();
 // Wording for the computer the desktop app runs on (Windows app vs Mac app).
 const ON_WIN = (() => { try { return /Windows/i.test(navigator.userAgent || '') || /^Win/i.test(navigator.platform || ''); } catch { return false; } })();
-const HOST = ON_WIN ? 'PC' : 'Mac';
+// The Android app keeps its folder private to the app, so there's nothing to show in a file browser.
+const ON_ANDROID = (() => { try { return /Android/i.test(navigator.userAgent || ''); } catch { return false; } })();
+const HOST = ON_ANDROID ? 'phone' : ON_WIN ? 'PC' : 'Mac';
 const FOLDER_APP = ON_WIN ? 'File Explorer' : 'Finder';
 class DesktopStore {
   constructor(T) { this.kind = 'file'; this.T = T; this.folder = ''; this.q = new Map(); }
@@ -2231,7 +2233,7 @@ function refreshYou() {
       <div class="srow2">${ic('sparkle')}<span class="t"><b>Smart reads: ${ai[0]}</b><span>${ai[1]}</span></span></div>
       ${quick && aiOK() ? `<button class="srow2" data-act="reread-quick">${ic('refresh')}<span class="t"><b>Read ${quick} quick-read day${quick > 1 ? 's' : ''} properly</b><span>Mochi reads them one at a time</span></span></button>` : ''}
       <div class="srow2">${ic('diary')}<span class="t"><b>Where your diary lives</b><span>${where}</span></span></div>
-      ${S.store.kind === 'file' ? `<button class="srow2" data-act="show-folder">${ic('folder')}<span class="t"><b>Show in ${FOLDER_APP}</b><span>Open the folder that holds your days and photos</span></span></button>` : ''}
+      ${S.store.kind === 'file' && !ON_ANDROID ? `<button class="srow2" data-act="show-folder">${ic('folder')}<span class="t"><b>Show in ${FOLDER_APP}</b><span>Open the folder that holds your days and photos</span></span></button>` : ''}
     </div>
     <div class="grp">
       <button class="srow2" data-act="export-json">${ic('download')}<span class="t"><b>Back up everything</b><span>A .json file with your days, photos and reports</span></span></button>

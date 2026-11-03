@@ -18,6 +18,7 @@ Get the latest version from the [Releases](../../releases) page:
 | --- | --- |
 | Windows 10 or 11 | `Mochi Diary_x.x.x_x64-setup.exe` (or the `.msi`) |
 | Mac (Apple Silicon or Intel, macOS 11+) | `Mochi Diary_x.x.x_universal.dmg` |
+| Android phone (Android 7+, 64-bit) | `Mochi Diary_x.x.x_android-arm64.apk` |
 
 ## Install on Windows
 
@@ -35,6 +36,13 @@ Prefer an `.msi`? It's the same app, installed for everyone on the PC (asks for 
    - **macOS 14 or earlier:** right-click (or Control-click) the app, choose **Open**, then **Open** again.
 3. After that it opens normally.
 
+## Install on Android
+
+1. On the phone, download the `.apk` and tap it (from the browser's downloads or the Files app).
+2. The first time, Android asks to allow installs from that app: tap **Settings**, turn on **Allow from this source**, go back and tap **Install**.
+3. Mochi Diary isn't from the Play Store, so Play Protect may warn you. Tap **More details → Install anyway**.
+
+On Android the diary is kept in the app's own private storage, which other apps can't read. Uninstalling the app deletes it, so use **You → Back up everything** first; restoring that backup brings your days back (it also moves days between your phone and computer).
 
 ## Where your diary lives
 
