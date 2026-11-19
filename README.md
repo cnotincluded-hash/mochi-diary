@@ -44,6 +44,18 @@ Prefer an `.msi`? It's the same app, installed for everyone on the PC (asks for 
 
 On Android the diary is kept in the app's own private storage, which other apps can't read. Uninstalling the app deletes it, so use **You → Back up everything** first; restoring that backup brings your days back (it also moves days between your phone and computer).
 
+## How Mochi reads your days
+
+Mochi reads every entry right on your computer or phone. Nothing you write is sent anywhere.
+
+- **Named feelings.** Mochi picks out up to six feelings from 37 (anxious, relieved, lonely, proud, cosy and so on), and how strongly you felt each one: *a little*, *clearly* or *strongly*. It understands "not happy", "a bit tired", "SO proud", "couldn't stop laughing", emoji, and questions like "am I happy?", and it doesn't confuse someone else's feelings ("Mum was stressed") or a sore back with yours.
+- **What caused them.** Each feeling is linked to what it was about: "anxious about the deadline", "happy after seeing Maya", "lonely because nobody texted back".
+- **How the day moved.** Mochi follows the day from morning to evening and spots a rough start with a better finish, a good start that faded, or a mixed day.
+- **Your corrections.** Mochi shows what it senses while you write. Tap × on a feeling that's wrong or **Add a feeling** for one it missed, and you can change them later on the day itself. Your corrections are kept, even when a day is read again.
+- **Patterns over time.** Cards and deep dives look across your days for worries that keep coming back, people and things that lift you, feelings tied to a day of the week, days that turn around, and feelings that show up several days running. Every card links to the days behind it.
+
+Days saved with an earlier version are read again automatically the first time you open 1.2.
+
 ## Where your diary lives
 
 Your diary is a folder of ordinary files. **You → Show in File Explorer** (Windows) or **Show in Finder** (Mac) opens it.
@@ -75,6 +87,7 @@ Mac:     ~/Library/Application Support/com.caffeinenotincluded.mochidiary/Diary/
 | `src-tauri/tauri.conf.json` | App name, window size, bundle id `com.caffeinenotincluded.mochidiary`, icons, `.dmg` layout, Windows installer settings. |
 | `.github/workflows/build.yml` | Builds the Windows installers and the universal `.dmg` on GitHub, into one draft release. Push a `v*` tag or use **Run workflow**. |
 | `tests/desktop_test.py` | Runs the app page with a stand-in for the desktop side: `python tests/desktop_test.py . windows` or `. mac`. |
+| `tests/feelings_test.py` | Checks the feelings reader on tricky sample entries, then writing, correcting and reviewing feelings in the app: `python tests/feelings_test.py .` (add `--shots` for screenshots). |
 | `assets/app-icon.svg` | The icon source. After changing it, run `npx tauri icon assets/app-icon.png -o src-tauri/icons`. |
 
 Fonts: Mochiy Pop One and M PLUS Rounded 1c, SIL Open Font License (copies of the licence are bundled with the app).

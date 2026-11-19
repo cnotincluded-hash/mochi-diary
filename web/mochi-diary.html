@@ -487,6 +487,58 @@ textarea.field{resize:vertical;min-height:96px}
 @media (hover:hover){.btn:hover{filter:brightness(1.03)}.ecard:hover{transform:translateY(-2px)}.tab:hover{color:var(--accent-ink)}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 
+
+/* feelings */
+.fmini{display:inline-flex;align-items:center;gap:5px;min-height:24px;padding:2px 9px 2px 7px;border-radius:12px;background:var(--fs);color:var(--ink);font-size:12.5px;font-weight:800;line-height:1.2;max-width:100%}
+.fmini i{width:9px;height:9px;border-radius:50%;background:var(--fc);flex:none}
+.fmini.lg{font-size:13.5px;min-height:30px;padding:4px 11px 4px 8px;border-radius:15px;flex-wrap:wrap;gap:2px 6px}
+.fmini small{font-weight:600;color:var(--ink-2);font-size:12px}
+.farrow{font-weight:800;color:var(--ink-3);font-size:13px}
+.ec-feel{display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.vfeel{display:flex;flex-direction:column;gap:6px}
+.arcsvg{width:100%;height:auto;display:block;overflow:visible}
+.arcsvg .arc0{stroke:var(--line);stroke-width:2;stroke-dasharray:3 5}
+.arcsvg .arcl{fill:none;stroke:var(--accent);stroke-width:3.5;stroke-linecap:round}
+.arcsvg .arcp{fill:var(--energy);stroke:var(--card);stroke-width:2.5}
+.arcsvg .arcn{fill:var(--stress);stroke:var(--card);stroke-width:2.5}
+.arcsvg .arct{fill:var(--ink-2);font:800 11px var(--f-body)}
+.frows{display:flex;flex-direction:column;gap:2px}
+.frow{display:grid;grid-template-columns:auto minmax(0,1fr) 36px;align-items:center;gap:8px;padding:4px 0;border-bottom:2px dashed var(--line)}
+.frow:last-child{border-bottom:0}
+.fname{display:inline-flex;align-items:center;gap:7px;min-height:38px;padding:4px 12px 4px 9px;border-radius:19px;background:var(--fs);text-align:left}
+.fname i{width:11px;height:11px;border-radius:50%;background:var(--fc);flex:none}
+.fname b{font-weight:800;font-size:14.5px;white-space:nowrap}
+.fname .str{font-size:12px;font-weight:700;color:var(--ink-2);white-space:nowrap}
+.fwhy{font-size:13.5px;color:var(--ink-2);font-weight:600;overflow-wrap:anywhere;line-height:1.35}
+.fx{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;color:var(--ink-3)}
+.fx .ic{width:16px;height:16px;stroke-width:2.6}
+.fx:hover{background:var(--sunk);color:var(--down)}
+.fadd{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.fgroup{display:flex;flex-direction:column;gap:6px}
+.fpick{display:inline-flex;align-items:center;gap:6px;min-height:34px;padding:3px 12px 3px 9px;border-radius:17px;background:var(--card);box-shadow:0 0 0 2px var(--line);font-size:13.5px;font-weight:800;color:var(--ink);flex-wrap:wrap}
+.fpick i{width:10px;height:10px;border-radius:50%;background:var(--fc);flex:none}
+.fpick[aria-pressed="true"],.fpick.on{background:var(--fs);box-shadow:none}
+.fpick.mine{box-shadow:0 0 0 2px var(--fc)}
+.fpick small{font-weight:600;color:var(--ink-2);font-size:12px}
+.fpick .fx{width:24px;height:24px;margin:-2px -6px -2px 0}
+.fpick .fx .ic{width:13px;height:13px}
+.fpick.add{color:var(--accent-ink);box-shadow:0 0 0 2px var(--line);background:transparent}
+.fpick.add .ic{width:14px;height:14px;stroke-width:2.8}
+.senses{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:2px 2px 0}
+.sn-l{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:800;color:var(--accent-ink);margin-right:2px}
+.sn-l .ic{width:15px;height:15px}
+.flist{display:flex;flex-direction:column;gap:4px}
+.fbar{display:grid;grid-template-columns:minmax(96px,30%) minmax(0,1fr) auto;align-items:center;gap:10px;min-height:40px;width:100%;text-align:left;border-radius:14px;padding:2px 4px}
+.fbar:hover{background:var(--sunk)}
+.fbar .fn{display:flex;align-items:center;gap:7px;font-weight:800;font-size:14px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fbar .fn i{width:10px;height:10px;border-radius:50%;background:var(--fc);flex:none}
+.fbar .ft{height:14px;border-radius:7px;background:var(--fs);overflow:hidden}
+.fbar .ft i{display:block;height:100%;border-radius:7px;background:var(--fc)}
+.fbar .fc{font-size:12.5px;font-weight:800;color:var(--ink-2)}
+.fdet{margin:0 4px 8px 21px;padding:8px 12px;border-left:3px solid var(--line);display:flex;flex-direction:column;gap:6px;font-size:14px}
+.fdet p{margin:0;line-height:1.45}
+.arcpills{display:flex;flex-direction:column;gap:6px}
+.arcpills .pill b{color:var(--ink)}
 </style>
 <div id="app"></div>
 <div id="layers"></div>
@@ -1078,41 +1130,813 @@ function factorLabel(text, kw) {
   const s = w.join(' ').replace(/[^\w\s'’-]+$/, '');
   return (s[0] || '').toUpperCase() + s.slice(1, 48);
 }
-function quickRead(text) {
-  const clean = String(text).replace(STEP_LABEL_RE, '');
-  const t = ' ' + clean.toLowerCase() + ' ';
-  const scores = {}; const factors = []; const seen = new Set();
-  for (const m of MID) {
-    const up = countHits(t, LEX[m].up), dn = countHits(t, LEX[m].dn);
-    let v = 5 + 1.3 * up.n - 1.3 * dn.n;
-    scores[m] = clamp(Math.round(v), 1, 9);
-    const add = (h, eff) => { const label = factorLabel(clean, h); const k = label.toLowerCase(); if (seen.has(k + m)) return; seen.add(k + m); factors.push({ area: m, label, effect: eff }); };
-    up.hits.slice(0, 2).forEach(h => add(h, 1));
-    dn.hits.slice(0, 2).forEach(h => add(h, -1));
+/* ================= Mochi's heart: the on-device feelings reader =================
+   Reads a diary entry for named feelings, how strongly they were felt, what caused them,
+   and how the day moved from start to finish. Nothing leaves the device.
+   Pieces: FEELINGS (lexicon) -> findHits (negation, intensity, contrast, questions, other people)
+   -> causes -> arc (segments of the day) -> scores, factors, title, snapshot, reply. */
+
+// fam: colour family. v: valence -2..2. fx: effect on the five scores.
+const FEELINGS = {
+  happy:      { n: 'Happy',      adj: 'happy',      fam: 'bright', v: 1.6, fx: { joy: 1.5 },
+    t: ['>cheered me up|perked me up|lifted my mood|lifted my spirits|put a smile on my face|made me smile|made my day|made me happy', 'cheered up', 'happy', 'happier', 'happiest', 'glad', 'joy', 'joyful', 'delighted', 'cheerful', 'chuffed', 'over the moon', 'smiled|smiling', 'grinning', 'yay', 'great day', 'good day', 'lovely day', 'perfect day', 'best day', 'amazing day', 'brilliant day', 'wonderful day', 'good mood', 'great mood', 'in a good place', 'felt good|feel good|feeling good|feels good', 'felt great|feel great|feeling great', 'felt amazing|feel amazing|feeling amazing', 'loved it|love it', '^tasted amazing:0.6', '^lovely:0.5', '^wonderful:0.6', '^amazing:0.5', '^brilliant:0.5', '^fantastic:0.6', '^perfect:0.4', '^nice:0.35', '^fun:0.6', '^sweet:0.4', 'enjoyed|enjoying|enjoy:0.7', 'couldn\'t be happier:2', 'good vibes'] },
+  excited:    { n: 'Excited',    adj: 'excited',    fam: 'bright', v: 1.6, fx: { joy: 1.1, energy: 0.8 },
+    t: ['excited|exciting', 'can\'t wait|cant wait|couldn\'t wait', 'looking forward', 'buzzing', 'thrilled', 'pumped', 'hyped', 'stoked', 'eager', 'giddy'] },
+  proud:      { n: 'Proud',      adj: 'proud',      fam: 'bright', v: 1.5, fx: { joy: 1.1, productivity: 0.7 },
+    t: ['proud', 'nailed it|nailed', 'smashed it', 'accomplished', 'achievement', 'managed to:0.6', 'finally did', 'i did it', 'made it to', 'won|winning', 'passed', 'got the job', 'promoted|promotion', 'felt huge:1.2', 'brave'] },
+  amused:     { n: 'Amused',     adj: 'amused',     fam: 'bright', v: 1.3, fx: { joy: 1.2, social: 0.3 },
+    t: ['laughed|laughing|laugh', 'lol|lmao', 'haha+', '^hilarious', '^funny', 'cracked up', 'giggl\\w*', 'in stitches', 'banter', 'couldn\'t stop laughing:2'] },
+  hopeful:    { n: 'Hopeful',    adj: 'hopeful',    fam: 'bright', v: 1.1, fx: { joy: 0.8 },
+    t: ['hopeful', 'optimistic', 'looking up', 'fresh start', 'new start', 'feel like it\'ll be ok', 'hope:0.5', 'hoping:0.5', 'positive about'] },
+  inspired:   { n: 'Inspired',   adj: 'inspired',   fam: 'bright', v: 1.2, fx: { joy: 0.6, energy: 0.5, productivity: 0.5 },
+    t: ['inspired', 'motivated', 'creative', 'curious', 'fascinated', 'had an idea:0.8', 'new idea:0.7', '^interesting:0.4'] },
+  loved:      { n: 'Loved',      adj: 'loved',      fam: 'warm', v: 1.7, fx: { joy: 1.1, social: 1.2 },
+    t: ['felt loved|feel loved|feeling loved', 'cared for', 'looked after', 'hugs?|hugged', 'cuddl\\w*', 'kissed', 'affection', 'adore', 'love (?:him|her|them|you|my \\w+):1'] },
+  grateful:   { n: 'Grateful',   adj: 'grateful',   fam: 'warm', v: 1.4, fx: { joy: 1, social: 0.3 },
+    t: ['grateful', 'thankful', 'appreciated?', 'lucky', 'blessed', '^so kind', 'kindness', 'thank god|thank goodness'] },
+  connected:  { n: 'Connected',  adj: 'connected',  fam: 'warm', v: 1.4, fx: { social: 1.5, joy: 0.7 },
+    t: ['connected', 'understood', 'felt seen', 'listened to', 'close to', 'heart to heart', 'deep chat|deep talk', 'long talk|long chat', 'talked for hours|talked for ages|chatted for hours|chatted for ages', 'caught up|catch up|catching up:0.7', 'belong'] },
+  cosy:       { n: 'Cosy',       adj: 'cosy',       fam: 'warm', v: 1.2, fx: { joy: 0.8, stress: -0.6 },
+    t: ['^cosy|^cozy', '^snug', '^comfy', 'tucked up', 'under a blanket', 'hot chocolate:0.5', 'tea in bed'] },
+  calm:       { n: 'Calm',       adj: 'calm',       fam: 'calm', v: 1.1, fx: { stress: -1.5, joy: 0.3 },
+    t: ['calm|calmer', 'more relaxed', '^peaceful', 'relaxed|relax', '^relaxing', 'chill|chilled|chilling|chilly:0', 'serene', 'at ease', 'mellow', 'unwound|unwind|unwinding', 'zen', 'quiet day|slow day|slow morning|lazy day', 'no stress', 'nothing to worry about', 'stress free|stress-free'] },
+  content:    { n: 'Content',    adj: 'content',    fam: 'calm', v: 0.8, fx: { joy: 0.7, stress: -0.4 },
+    t: ['content', 'satisfied', 'not bad', 'can\'t complain', 'decent', 'pleasant', 'nice day', 'okay day|ok day|alright day', 'fine:0.35'] },
+  relieved:   { n: 'Relieved',   adj: 'relieved',   fam: 'calm', v: 1.2, fx: { stress: -1.2, joy: 0.6 },
+    t: ['relieved', 'relief', 'phew', 'weight off', 'feel(?:ing)? better|felt better:0.7', 'finally over', 'glad it\'s over|glad that\'s over|glad it\'s done|glad that\'s done', 'worked out', 'sorted it:0.7'] },
+  rested:     { n: 'Rested',     adj: 'rested',     fam: 'calm', v: 1, fx: { energy: 1.4, stress: -0.3 },
+    t: ['rested', 'slept well|good sleep|great sleep|slept so well|slept like a log', 'lie in|lie-in|lay in', 'refreshed', 'recharged', 'napp?ed|a nap:0.5'] },
+  energised:  { n: 'Energised',  adj: 'energised',  fam: 'calm', v: 1.3, fx: { energy: 1.5, joy: 0.4 },
+    t: ['energised|energized|energetic', 'full of energy', 'felt alive|feel alive', 'lively', 'buzzing:0.5', 'wide awake'] },
+  focused:    { n: 'Focused',    adj: 'focused',    fam: 'calm', v: 0.9, fx: { productivity: 1.5 },
+    t: ['focused|focussed', 'in the zone', 'productive', 'in a flow|in flow', 'got loads done|got so much done|got a lot done', 'on top of', 'ticked off'] },
+  sad:        { n: 'Sad',        adj: 'sad',        fam: 'low', v: -1.6, fx: { joy: -1.5, energy: -0.3 },
+    t: ['sad|sadness', 'cried|crying|cry', 'tears|teary|tearful', 'upset', 'heartbroken', 'miserable', 'unhappy', 'gutted', 'depressed', 'grief|grieving', 'heavy heart', 'feel(?:ing|t)? (?:so |really |a bit |quite |pretty |kind of )?(?:down|low|blue|rubbish|crap|awful|terrible|horrible)', 'low mood|bad mood|down day|rough day|bad day|awful day|terrible day|horrible day|crap day|hard day|tough day:0.8', '@miss(?:ed|ing)? (?:him|her|them|you|home|my \\w+|mum|mom|dad)', '^depressing:0.8'] },
+  lonely:     { n: 'Lonely',     adj: 'lonely',     fam: 'low', v: -1.4, fx: { social: -1.6, joy: -0.7 },
+    t: ['lonely|loneliness', 'isolated', 'left out', 'excluded', 'ignored', 'invisible', '@no ?one (?:to talk to|texted(?: me)?(?: back)?|replied|called|messaged|came|turned up)', '@nobody (?:texted(?: me)?(?: back)?|replied|called|messaged|came|turned up|to talk to)', 'alone:0.7', 'by myself:0.4', 'on my own:0.35', '@didn\'t see anyone|didn\'t see anybody:0.6'] },
+  tired:      { n: 'Tired',      adj: 'tired',      fam: 'low', v: -0.9, fx: { energy: -1.5 },
+    t: ['tired', 'exhausted', '^exhausting', 'sleepy', 'knackered', 'shattered', 'worn out|wiped out', 'no energy|low energy', 'sluggish|groggy', 'slept badly|slept terribly|bad sleep|barely slept|didn\'t sleep|couldn\'t sleep|can\'t sleep|insomnia', 'yawn\\w*'] },
+  drained:    { n: 'Drained',    adj: 'drained',    fam: 'low', v: -1.2, fx: { energy: -1.5, joy: -0.4, stress: 0.4 },
+    t: ['drained', '^draining', 'burnt out|burned out|burnout', 'running on empty', 'nothing left', 'socially exhausted'] },
+  bored:      { n: 'Bored',      adj: 'bored',      fam: 'low', v: -0.7, fx: { joy: -0.6, energy: -0.5, productivity: -0.3 },
+    t: ['bored', '^boring', '^dull', 'monotonous', 'same old', 'nothing to do', 'dragged on|dragged'] },
+  flat:       { n: 'Flat',       adj: 'flat',       fam: 'low', v: -0.9, fx: { joy: -0.9, energy: -0.8, productivity: -0.5 },
+    t: ['flat', 'numb', 'empty', 'meh', 'blah', 'can\'t be bothered|couldn\'t be bothered', 'unmotivated|no motivation', 'going through the motions', 'apathetic', 'didn\'t feel anything'] },
+  disappointed: { n: 'Disappointed', adj: 'disappointed', fam: 'low', v: -1.1, fx: { joy: -1.1 },
+    t: ['disappointed', '^disappointing', 'let down', 'bummed', '@didn\'t go to plan|didn\'t go well', '@fell through', '@cancelled on me|bailed on me', 'rejected|rejection', 'shame:0.5'] },
+  nostalgic:  { n: 'Nostalgic',  adj: 'nostalgic',  fam: 'low', v: 0.1, fx: { joy: 0.2 },
+    t: ['nostalgic|nostalgia', 'reminisc\\w*', 'old photos', 'memories', 'remembered when'] },
+  anxious:    { n: 'Anxious',    adj: 'anxious',    fam: 'tense', v: -1.4, fx: { stress: 1.6, joy: -0.5 },
+    t: ['anxious|anxiety', 'worried|worry|worrying|worries', 'on edge', 'uneasy', 'dread|dreading', 'panic|panicked|panicking', 'heart racing|heart was racing', 'overthinking|overthought|overthink', 'spiral(?:l?ing|led)?', '@couldn\'t stop thinking|can\'t stop thinking|kept thinking|kept waking up thinking', 'what if'] },
+  stressed:   { n: 'Stressed',   adj: 'stressed',   fam: 'tense', v: -1.3, fx: { stress: 1.6, energy: -0.3 },
+    t: ['stress|stressed', '^stressful', 'under pressure|pressure', '^hectic', 'chaos', '^chaotic', 'frantic', 'rushed|rushing|rush', 'swamped|slammed', 'so much to do|too much to do|a lot on', 'exploded'] },
+  overwhelmed: { n: 'Overwhelmed', adj: 'overwhelmed', fam: 'tense', v: -1.7, fx: { stress: 2, productivity: -0.4 },
+    t: ['overwhelmed', '^overwhelming', 'too much:0.8', 'drowning', 'can\'t cope|couldn\'t cope', 'everything at once|all at once', 'falling apart', 'buried in'] },
+  nervous:    { n: 'Nervous',    adj: 'nervous',    fam: 'tense', v: -0.9, fx: { stress: 1 },
+    t: ['nervous|nerves', 'butterflies', 'jittery', 'apprehensive', 'scared', 'terrified', 'afraid', 'frightened'] },
+  restless:   { n: 'Restless',   adj: 'restless',   fam: 'tense', v: -0.6, fx: { stress: 0.6, energy: 0.2 },
+    t: ['restless', 'fidgety', 'antsy', 'unsettled', 'couldn\'t settle|can\'t settle', 'cooped up', 'cabin fever', 'distracted:0.7'] },
+  guilty:     { n: 'Guilty',     adj: 'guilty',     fam: 'tense', v: -1.1, fx: { joy: -0.8, stress: 0.6 },
+    t: ['guilty|guilt', 'feel bad|felt bad|feeling bad', 'should have|shouldn\'t have', 'regret|regretting', 'my fault', 'ashamed', 'feel awful about|felt awful about', 'sorry for'] },
+  embarrassed: { n: 'Embarrassed', adj: 'embarrassed', fam: 'tense', v: -1, fx: { joy: -0.6, stress: 0.5 },
+    t: ['embarrassed', '^embarrassing', '^awkward', 'cringe|cringed|cringey', 'mortified', 'humiliated'] },
+  insecure:   { n: 'Doubting yourself', adj: 'down on yourself', fam: 'tense', v: -1.3, fx: { joy: -1, stress: 0.7 },
+    t: ['insecure', 'not good enough', 'useless', 'a failure', 'hate myself', 'compared? myself|comparing myself', 'imposter', 'self-conscious|self conscious', 'doubt(?:ing)? myself|self doubt|self-doubt', 'stupid of me|so stupid'] },
+  frustrated: { n: 'Frustrated', adj: 'frustrated', fam: 'hot', v: -1.2, fx: { stress: 1.1, joy: -0.7 },
+    t: ['frustrated|frustration', '^frustrating', 'fed up', 'sick of', '@nothing went right', 'stuck', 'ugh+', 'argh+', 'struggl\\w*:0.7', 'wouldn\'t work|didn\'t work|won\'t work:0.7', '@snapped at (?:my )?\\w+', 'snapped', '@missed the (?:bus|train|deadline|call|flight):0.7'] },
+  annoyed:    { n: 'Annoyed',    adj: 'annoyed',    fam: 'hot', v: -0.9, fx: { stress: 0.8, joy: -0.5 },
+    t: ['annoyed', '^annoying', 'irritated', '^irritating', 'grumpy', 'cranky', '>wound me up|got on my nerves|winds me up|gets on my nerves', '^rude', '^could have been an email:0.6'] },
+  angry:      { n: 'Angry',      adj: 'angry',      fam: 'hot', v: -1.6, fx: { stress: 1.4, joy: -1 },
+    t: ['angry|anger', 'furious', 'livid', 'raging|rage', 'mad at', 'pissed off', 'fuming', 'shouted|yelled|screamed at'] },
+  hurt:       { n: 'Hurt',       adj: 'hurt',       fam: 'hot', v: -1.5, fx: { joy: -1.2, social: -0.4 },
+    t: ['hurt(?! my| me| his| her|s)', '^hurtful', 'stung', 'betrayed', '@left on read', '@ghosted', 'felt used', 'took it personally'] },
+  jealous:    { n: 'Jealous',    adj: 'jealous',    fam: 'hot', v: -0.9, fx: { joy: -0.7, stress: 0.4 },
+    t: ['jealous|jealousy', 'envious|envy', 'wish i had'] }
+};
+const FEEL_IDS = Object.keys(FEELINGS);
+const FAMS = {
+  bright: { n: 'Bright', c: 'var(--joy)', s: 'var(--joy-s)' },
+  warm:   { n: 'Warm', c: 'var(--social)', s: 'var(--social-s)' },
+  calm:   { n: 'Calm', c: 'var(--energy)', s: 'var(--energy-s)' },
+  low:    { n: 'Low', c: 'var(--productivity)', s: 'var(--productivity-s)' },
+  tense:  { n: 'Tense', c: 'var(--stress)', s: 'var(--stress-s)' },
+  hot:    { n: 'Prickly', c: 'var(--down)', s: 'var(--stress-s)' }
+};
+// What a negated feeling usually means ("not happy" reads as a little sad).
+const NEG_FLIP = { happy: ['disappointed', 0.6], excited: ['flat', 0.45], proud: ['disappointed', 0.5], amused: ['bored', 0.35], hopeful: ['disappointed', 0.4],
+  loved: ['lonely', 0.4], connected: ['lonely', 0.5], calm: ['anxious', 0.5], content: ['flat', 0.4], relieved: ['anxious', 0.4], rested: ['tired', 0.7],
+  energised: ['tired', 0.5], focused: ['restless', 0.45], sad: ['content', 0.3], lonely: ['connected', 0.25], tired: ['energised', 0.35],
+  anxious: ['calm', 0.45], stressed: ['calm', 0.5], overwhelmed: ['calm', 0.3], nervous: ['calm', 0.35], bored: ['content', 0.2] };
+const EMOJI_FEEL = [
+  [/[😊🙂😀😁😄😃☺]/gu, 'happy'], [/[😂🤣]/gu, 'amused'], [/[🥰😍❤💕💖💗😘]/gu, 'loved'], [/[😭😢😞😔☹🙁💔]/gu, 'sad'],
+  [/[😡🤬😠]/gu, 'angry'], [/😤/gu, 'frustrated'], [/[😩😫]/gu, 'drained'], [/[😴🥱]/gu, 'tired'], [/[😰😨😬😟]/gu, 'anxious'],
+  [/😌/gu, 'relieved'], [/🙏/gu, 'grateful'], [/[🎉🥳]/gu, 'excited'], [/[😐😑]/gu, 'flat'], [/🤯/gu, 'overwhelmed'], [/😳/gu, 'embarrassed'],
+  [/(?:^|\s)[:;]-?[)D](?=\s|$)/g, 'happy'], [/(?:^|\s):-?\((?=\s|$)/g, 'sad'], [/(?:^|\s)xD(?=\s|$)/g, 'amused']
+];
+const NEG_W = new Set(['not', 'no', 'never', 'nothing', 'nobody', 'hardly', 'barely', 'without', 'nor', 'cannot', 'isn\'t', 'wasn\'t', 'aren\'t', 'weren\'t', 'don\'t', 'didn\'t', 'doesn\'t', 'can\'t', 'couldn\'t', 'won\'t', 'wouldn\'t', 'shouldn\'t', 'haven\'t', 'hasn\'t', 'hadn\'t', 'ain\'t', 'isnt', 'wasnt', 'dont', 'didnt', 'doesnt', 'cant', 'couldnt', 'wont', 'havent', 'longer']);
+const UP_W = { so: 1.5, really: 1.4, very: 1.4, super: 1.5, extremely: 1.7, incredibly: 1.7, absolutely: 1.6, totally: 1.4, completely: 1.5, properly: 1.3, genuinely: 1.3, honestly: 1.2, ridiculously: 1.6, insanely: 1.6, massively: 1.5, deeply: 1.5, utterly: 1.6, such: 1.4, too: 1.25, crazy: 1.4, seriously: 1.4, actually: 1.1, pretty: 1.1, most: 1.3 };
+const DOWN_W = { bit: 0.55, little: 0.6, slightly: 0.5, kinda: 0.6, somewhat: 0.6, mildly: 0.5, fairly: 0.75, quite: 0.85, tad: 0.5, abit: 0.55, kind: 0.6, sort: 0.6, almost: 0.6, nearly: 0.6 };
+const BREAK_W = new Set(['but', 'and', 'so', 'because', 'cause', 'though', 'although', 'however', 'yet', 'then', 'while', 'which', 'until']);
+const ME_W = new Set(['i', 'i\'m', 'im', 'me', 'my', 'we', 'us', 'our', 'myself', 'i\'ve', 'i\'d']);
+const OTHER_SUBJ = new Set(['he', 'she', 'they', 'his', 'her', 'their', 'everyone', 'everybody', 'someone', 'mum', 'mom', 'dad', 'partner', 'boss', 'manager', 'friend', 'sister', 'brother', 'colleague', 'kids', 'baby', 'dog', 'cat']);
+const LINK_W = new Set(['was', 'is', 'seemed', 'seems', 'felt', 'feels', 'looked', 'looks', 'got', 'gets', 'sounded', 'sounds', 'were', 'are']);
+const SEG_LABELS = ['Morning', 'Daytime', 'Evening', 'Late'];
+const SEG_RE = [
+  [0, /\b(this morning|in the morning|woke up|wake up|waking up|first thing|breakfast|morning)\b/],
+  [1, /\b(at work|lunch|lunchtime|midday|noon|this afternoon|in the afternoon|afternoon|during the day)\b/],
+  [2, /\b(after work|this evening|in the evening|by the evening|evening|tonight|dinner|after dinner|by night)\b/],
+  [3, /\b(right now|before bed|in bed|going to bed|end of the day|by the end of the day|winding down|now)\b/]
+];
+const NEXT_RE = /^(then|later|after that|afterwards|eventually|in the end|finally|by the end)\b/;
+const GUIDE_LABELS = { 'waking up': 'Waking up', morning: 'Morning', afternoon: 'Afternoon', evening: 'Evening', 'winding down': 'Winding down' };
+const VAGUE_HEAD = new Set('day days morning evening night afternoon time week moment bit lot lots thing things way stuff everything something nothing it that this today tonight end rest one ones while kind sort feeling feelings mood start'.split(' '));
+const DET_RE = /\b(?:my|the|our|a|an|this|that|his|her|their)\s+((?:[a-z'-]+\s){0,2}[a-z'-]+)/g;
+const STOP_TAIL = new Set('a an the and but or so then i we me my our it to of in on at for with was were had have has just really very this that some about after again too'.split(' '));
+const CARE2_RE = /\b(better off without me|can'?t go on|no point (in )?(living|going on)|want to disappear forever)\b/i;
+
+const NAME_VERB = new Set('came made said was is and texted called brought took told asked wants wanted went got had seemed looked helped cooked invited messaged sent showed gave visited dropped picked laughed cried left loves loved bought baked drove rang popped stayed has will would could'.split(' '));
+const MORE_NOT = new Set('Not No Yes So Very Really Just Honestly Feeling Felt Had Got Went Kind Pretty Bit Little Seeing Being Having Getting Finally Super Totally Woke Slept Ugh Meh Lol Haha Omg Wow Hmm Am Is Are Was Were Do Did Does Have Has Will Would Could Should Might Must Maybe Probably Definitely Literally Actually Basically Still Even Only Both Each Every Lots Loads Thanks Thank Please Dreading Worried Excited Work Gym Home School Uni Pizza Coffee Tea Today Tonight Proud Happy Sad Tired Cosy Grateful Relieved Lonely Stressed Anxious Calm Can Cant Couldnt Didnt Dont Spent Started Finished Watched Read Played Made Cooked Called Texted Met Saw Took Bought Ate Walked Ran Worked Need Want Wish Hope Love Hate Like Miss Think Thought Know Knew Feel Found Kept Tried Decided Managed Skipped Cancelled Rained Inbox Team Pub Home Bed Lunch Dinner Breakfast Morning Afternoon Evening Night'.split(' '));
+const ROLE_RE = /\b(?:my\s+)?(mum|mom|mother|dad|father|sister|brother|nan|gran|grandma|grandad|grandpa|partner|boyfriend|girlfriend|husband|wife|boss|manager|bestie|best friend|flatmate|roommate|housemate|son|daughter|therapist|teacher)\b/gi;
+const ROLE_NAME = { mum: 'Mum', mom: 'Mom', mother: 'Mum', dad: 'Dad', father: 'Dad', nan: 'Nan', gran: 'Gran', grandma: 'Grandma', grandad: 'Grandad', grandpa: 'Grandpa', 'best friend': 'Best friend' };
+function findFolks(text, known = []) {
+  const flat = String(text).replace(/\p{Extended_Pictographic}/gu, '. ');
+  const names = new Set(findPeople(flat).filter(n => !MORE_NOT.has(n)));
+  const sents = flat.split(/(?<=[.!?\n])\s+|\n+/);
+  for (const s of sents) {
+    const m = /^\s*["'(]?([A-Z][a-z]{1,15})(?:'s)?\s+([a-z']+)/.exec(s);
+    if (m && !NOT_NAMES.has(m[1]) && !MORE_NOT.has(m[1]) && (NAME_VERB.has(m[2]) || /'s\s/.test(m[0]) || names.has(m[1]))) names.add(m[1]);
   }
-  const people = findPeople(clean);
-  if (people.length) scores.social = clamp(scores.social + Math.min(3, people.length), 1, 9);
-  const stickers = matchStickers(clean);
-  const areas = matchAreas(clean);
-  const first = clean.trim();
-  const title = clip(first.split(/[.!?\n]/)[0] || 'My day', 38);
-  const top = MID.filter(m => m !== 'stress').sort((a, b) => scores[b] - scores[a])[0];
-  const replies = {
-    joy: 'Thanks for telling me about your day. It sounds like there were some bright moments in there.',
-    social: 'Thanks for telling me about your day. It sounds like people made a difference today.',
-    productivity: 'Thanks for telling me about your day. You got real things done.',
-    energy: 'Thanks for telling me about your day. You sound like you had some fuel in the tank.'
+  for (const k of known) if (k && /^[A-Z][a-z]{1,15}$/.test(k) && new RegExp(`\\b${k}\\b`).test(flat)) names.add(k);
+  const roles = []; let r; ROLE_RE.lastIndex = 0;
+  while ((r = ROLE_RE.exec(flat))) { const k = r[1].toLowerCase(); const n = ROLE_NAME[k] || capFirst(k); if (!roles.includes(n)) roles.push(n); }
+  return { names: [...names].slice(0, 8), roles: roles.slice(0, 4) };
+}
+const escRe = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const FEEL_PATS = [];
+for (const id of FEEL_IDS) for (const raw of FEELINGS[id].t) {
+  const m = /^([@>^]?)(.*?)(?::([\d.]+))?$/.exec(raw);
+  const w = m[3] == null ? 1 : Number(m[3]);
+  if (!w) continue;
+  const body = m[2].replace(/\^/g, '');
+  FEEL_PATS.push({ id, w, flag: m[1], re: new RegExp(`(?<![a-z'])(?:${body})(?![a-z])`, 'g'), self: /\b(not|no|n't|never|nobody|nothing|without|cant|couldnt|didnt)\b|n't/.test(body) });
+}
+const SIG_RE = new Map();
+for (const id of STICKER_IDS) SIG_RE.set(id, new RegExp(`(?<![a-z])(?:${STICKERS[id].kw.map(escRe).join('|')})(?![a-z])`));
+
+function toYou(s) {
+  return String(s).replace(/\b(I'm|I am|I've|I'd|I'll|I|me|my|mine|myself|we|our|us)\b/gi, w => ({ "i'm": "you're", 'i am': 'you are', "i've": "you've", "i'd": "you'd", "i'll": "you'll", i: 'you', me: 'you', my: 'your', mine: 'yours', myself: 'yourself', we: 'you', our: 'your', us: 'you' })[w.toLowerCase()] || w);
+}
+function capFirst(s) { s = String(s || '').trim(); return s ? s[0].toUpperCase() + s.slice(1) : s; }
+function tidySentence(s) {
+  s = String(s).replace(/\s+/g, ' ').trim().replace(/\bi\b/g, 'I').replace(/\bi'(m|ve|d|ll)\b/g, "I'$1").replace(/\bim\b/g, "I'm");
+  s = capFirst(s);
+  if (s && !/[.!?…)"']$/.test(s)) s += '.';
+  return s;
+}
+// Splits an entry into sentences with a time-of-day segment for each.
+function splitDay(text) {
+  const blocks = String(text || '').replace(/\r/g, '').split(/\n\s*\n/);
+  const out = [];
+  let guided = false;
+  blocks.forEach(b => {
+    const m = /^\s*(Waking up|Morning|Afternoon|Evening|Winding down):\s*/i.exec(b);
+    if (m) guided = true;
+    const label = m ? GUIDE_LABELS[m[1].toLowerCase()] : null;
+    const body = m ? b.slice(m[0].length) : b;
+    const parts = body.replace(/([.!?…]+["')]?)\s+/g, '$1\u0001').replace(/\n+/g, '\u0001').split('\u0001').map(s => s.trim()).filter(Boolean);
+    parts.forEach(s => out.push({ orig: s, label }));
+  });
+  // free writing: find time markers
+  if (!guided) {
+    let seg = -1, any = false;
+    for (const s of out) {
+      const low = s.orig.toLowerCase();
+      let hit = -1;
+      for (const [i, re] of SEG_RE) if (re.test(low)) { hit = Math.max(hit, i); if (i < 3) break; }
+      if (hit >= 0 && (hit >= seg || seg < 0)) { seg = hit; any = true; }
+      else if (NEXT_RE.test(low) && seg >= 0) seg = Math.min(3, seg + 1);
+      s.seg = seg;
+    }
+    if (any) { let first = out.find(s => s.seg >= 0); out.forEach(s => { if (s.seg < 0) s.seg = first ? Math.min(first.seg, 0) || 0 : 0; s.label = SEG_LABELS[s.seg]; }); }
+    else if (out.length >= 3) { out.forEach((s, i) => { s.seg = Math.min(2, Math.floor(i * 3 / out.length)); s.label = ['Start', 'Middle', 'End'][s.seg]; }); }
+    else out.forEach(s => { s.seg = 0; s.label = ''; });
+  } else {
+    const order = ['Waking up', 'Morning', 'Afternoon', 'Evening', 'Winding down'];
+    out.forEach(s => { s.seg = Math.max(0, order.indexOf(s.label)); });
+  }
+  return { sents: out, guided };
+}
+
+function wordsWithPos(low) {
+  const toks = []; const re = /[a-z0-9']+|[^\sa-z0-9']/g; let m;
+  while ((m = re.exec(low))) toks.push({ w: m[0], s: m.index, e: m.index + m[0].length });
+  return toks;
+}
+const TIME_TAIL = /\s+(this morning|this afternoon|this evening|tonight|today|yesterday|earlier|later|afterwards|after|again|at the end|all (?:day|morning|afternoon|evening|night|week|weekend)|for once|though|too|as well|lol|haha|tbh|honestly)$/i;
+const NP_VERB = /^(went|was|is|were|are|made|got|had|did|felt|came|said|took|seemed|looked|go|goes|turned|ran|ended|started|kept|left|has|have|will|would|could)$/i;
+function trimPhrase(p, max = 6, np = false) {
+  let w = p.trim().split(/\s+/).filter(Boolean);
+  if (np) { const v = w.findIndex((x, i) => i > 0 && NP_VERB.test(x)); if (v > 0) w = w.slice(0, v); }
+  while (w.length > 1 && /^(had|having|went|got|getting|did|spent|was|were|ate|grabbed)$/i.test(w[0]) && !/^(to|for)$/i.test(w[1] || '')) w.shift();
+  if (w.length > 2 && /^(went)$/i.test(w[0]) && /^(to|for)$/i.test(w[1])) w = w.slice(2);
+  const cut = w.findIndex((x, i) => i > 0 && /^(but|so|which|because|then|while|though|although|until|when|cause|as|since|if|and)$/i.test(x) && !(x.toLowerCase() === 'and' && /^[A-Z]/.test(w[i + 1] || '')));
+  if (cut > 0) w = w.slice(0, cut);
+  w = w.slice(0, max);
+  let t = w.join(' ');
+  for (let k = 0; k < 3; k++) t = t.replace(TIME_TAIL, '');
+  w = t.split(' ');
+  while (w.length && STOP_TAIL.has(w[w.length - 1].toLowerCase().replace(/[^a-z']/g, ''))) w.pop();
+  while (w.length > 1 && /^(just|really|actually|literally|also|the fact)$/i.test(w[0])) w.shift();
+  return w.join(' ').replace(/[^\w\s'’&-]+$/, '').trim();
+}
+function topicKey(phrase, folks, fine = false) {
+  const p = String(phrase || '');
+  for (const n of folks.names) if (new RegExp(`\\b${escRe(n)}\\b`).test(p)) return { k: 'p:' + n, n };
+  ROLE_RE.lastIndex = 0; const r = ROLE_RE.exec(p);
+  if (r) { const n = ROLE_NAME[r[1].toLowerCase()] || capFirst(r[1].toLowerCase()); return { k: 'p:' + n, n }; }
+  const low = p.toLowerCase();
+  let bestS = null;
+  if (!fine) for (const [id, re] of SIG_RE) { const m = re.exec(low); if (m && (!bestS || m.index < bestS.i)) bestS = { i: m.index, id }; }
+  if (bestS) return { k: 's:' + bestS.id, n: STICKERS[bestS.id].n };
+  let all = low.replace(/[^a-z' -]/g, ' ').split(/\s+/).filter(Boolean);
+  const pi = all.findIndex((w, i) => i > 0 && /^(before|with|after|at|in|on|of|for|about|from|over|during|to)$/.test(w));
+  if (pi > 0) all = all.slice(0, pi);
+  const words = all.filter(w => !STOP_TAIL.has(w) && !VAGUE_HEAD.has(w));
+  const head = words[words.length - 1];
+  if (!head || head.length < 3) return null;
+  return { k: 'w:' + head.replace(/(?<=[a-z]{3})s$/, ''), n: head };
+}
+const PRON_RE = /^(him|her|them|he|she|they|his|their)$/i;
+const VAGUE_CAUSE = /^(all|it|this|that|everything|anything|anyone|anybody|nothing|life|stuff|things|today|me|myself|now|the day|the moment|how i feel|being me|you|ages|hours|ever|a while|long|once|years|days|a bit|a lot|lots)\b/;
+const INT_RE = '(?:so |really |very |a bit |quite |pretty |kind of |super |actually |properly |absolutely |too |a little |slightly |still |honestly |genuinely )*';
+const SUBJ_STOP = '(?!\\b(?:and|but|then|so|because|i|it|he|she|they|we|you|that|this|everything|today|which|there|what|who|im|i\'m)\\b)';
+const SUBJ_RE = new RegExp(`(?:^|[,;:]|\\b(?:and|but|then|so|because)\\b)\\s*((?:${SUBJ_STOP}[a-z0-9' -]){2,48}?)\\s+(?:was|were|is|are|felt|seemed|got|has been|had been|made me|makes me|left me|got me|kept me|was making me|is making me)\\s+(?:feel(?:ing)?\\s+)?${INT_RE}$`);
+const DIRECT_RE = new RegExp(`(?:^|[,;:]|\\b(?:and|but|then|so|because)\\b)\\s*((?:${SUBJ_STOP}[a-z0-9' -]){2,48}?)\\s*$`);
+const LEAD_RE = new RegExp(`^\\s*([a-z0-9' -]{3,40}?),\\s*(?:and\\s+)?(?:i\\s+)?(?:felt|feel|feeling|was|i'm|im|so|just)?\\s*${INT_RE}$`);
+const OBJ_FEEL = new Set(['anxious', 'nervous', 'excited', 'stressed', 'frustrated', 'hopeful', 'disappointed', 'sad', 'lonely']);
+// Finds what a feeling was about: after it ("about the deadline"), before it ("the meeting was stressful",
+// "seeing Maya cheered me up"), the thing a short sentence follows, then the nearest thing mentioned.
+function findCause(ctx, c) {
+  const { sent, low, folks, prevTopic, lastPerson, taken } = ctx;
+  const start = c.s, end = c.e;
+  const out = (text, prep, from, at = -1) => {
+    if (at >= 0 && taken.some(t => t.s < at + text.length && t.e > at)) return null;
+    text = trimPhrase(text, 6, from !== 'after' || !/^(how|what|why|whether|that|when|seeing|being|having|i|my \w+ \w+ed)\b/i.test(text.trim()));
+    if (!text || text.split(' ').length > 7) return null;
+    if (PRON_RE.test(text)) { if (!lastPerson) return null; text = lastPerson; }
+    if (VAGUE_CAUSE.test(text.toLowerCase()) || (!text.includes(' ') && VAGUE_HEAD.has(text.toLowerCase()))) return null;
+    const first = text.split(' ')[0];
+    const fw = first.replace(/'s$/, '');
+    if (!folks.names.includes(fw) && !(/^[A-Z]/.test(fw) && ROLE_NAME[fw.toLowerCase()])) text = text[0].toLowerCase() + text.slice(1);
+    return { text, prep, from };
   };
-  const care = CARE_RE.test(text);
+  const slice = (i, len) => sent.slice(i, i + len);
+  // after the feeling
+  const after = low.slice(end);
+  let m = /^[\s,]*(?:out\s+|up\s+|again\s+|so much\s+|a lot\s+)?(about|because of|because|cause|since|after|over|with|at|from|by|that|when|to see|seeing|for|of|thanks to|around|before|to)\s+([^,.;!?]+)/.exec(after);
+  if (m && !(m[1] === 'to' && /^(be|go|do|have|get|make|know|say|the point|bed)\b/.test(m[2]))) {
+    const off = end + m.index + m[0].length - m[2].length;
+    const prep = m[1] === 'cause' || m[1] === 'because of' || m[1] === 'because' ? 'because of' : m[1] === 'seeing' || m[1] === 'to see' ? 'after seeing' : m[1] === 'that' || m[1] === 'when' ? m[1] : m[1];
+    const r = out(slice(off, m[2].length), prep === 'because of' && /^(i|my|we|the|it)\b/.test(m[2]) ? 'because' : prep, 'after');
+    if (r) return r;
+  }
+  if (c.flag === '^') {
+    m = /^\s+(?:little\s+|long\s+|big\s+|quick\s+)?([a-z][a-z' -]{2,40})/.exec(after);
+    if (m && !/^(and|but|so|to|of|with|for|at|in|was|is|that|it|i|though|too|again|today|tonight|now|really|actually|lol|haha|as|all|honestly|tbh|anyway)\b/.test(m[1])) { const off = end + m.index + m[0].length - m[1].length; const r = out(slice(off, m[1].length), 'about', 'attr'); if (r) return r; }
+  }
+  if (c.obj) {
+    m = /^\s+((?:the|my|our|a|an|this|that|his|her|their|tomorrow's|tomorrow)\s+[^,.;!?]+)/.exec(after);
+    if (m) { const off = end + m.index + m[0].length - m[1].length; const r = out(slice(off, m[1].length), 'about', 'obj'); if (r) return r; }
+  }
+  const before = low.slice(0, start);
+  if (c.flag === '>' || c.flag === '^' || true) {
+    m = SUBJ_RE.exec(before) || (c.flag === '>' ? DIRECT_RE.exec(before) : null) || LEAD_RE.exec(before);
+    if (m) {
+      const off = m.index + m[0].indexOf(m[1]);
+      const prep = /^(seeing|having|meeting|talking|chatting|spending)\b/.test(m[1].trim()) ? 'about' : 'about';
+      const r = out(slice(off, m[1].length), prep, 'subj', off);
+      if (r) return r;
+    }
+  }
+  // nearest thing mentioned in the sentence
+  const cands = [];
+  for (const n of folks.names) { const re = new RegExp(`\\b${escRe(n)}\\b`, 'g'); let x; while ((x = re.exec(sent))) cands.push({ i: x.index, text: n, w: 0 }); }
+  ROLE_RE.lastIndex = 0; let r;
+  while ((r = ROLE_RE.exec(low))) cands.push({ i: r.index, text: slice(r.index, r[0].length), w: 0.5 });
+  for (const [, re] of SIG_RE) {
+    const mm = re.exec(low); if (!mm) continue;
+    if (/\b(got|went|came|get|go|come|back|headed|heading|walked|drove)\s+$/.test(low.slice(Math.max(0, mm.index - 9), mm.index))) continue;
+    const det = /(?:\b(?:the|my|our|a|an)\s+)$/.exec(low.slice(0, mm.index));
+    const i = det ? det.index : mm.index;
+    cands.push({ i, text: slice(i, mm.index + mm[0].length - i), w: 1 });
+  }
+  let d; DET_RE.lastIndex = 0;
+  while ((d = DET_RE.exec(low))) {
+    const words = d[1].split(/\s+/); const head = words[words.length - 1];
+    if (VAGUE_HEAD.has(head) || FEEL_IDS.some(f => FEELINGS[f].adj === head)) continue;
+    cands.push({ i: d.index, text: trimPhrase(slice(d.index, d[0].length), 5, true), w: 2 });
+  }
+  const valid = cands.filter(x => x.text && !taken.some(t => x.i < t.e && x.i + x.text.length > t.s));
+  if (valid.length) {
+    const dist = x => Math.min(Math.abs(x.i - start), Math.abs(x.i + x.text.length - start), Math.abs(x.i - end));
+    valid.sort((a, b) => (dist(a) + a.w * 8) - (dist(b) + b.w * 8));
+    const v = valid[0];
+    const pw = /\b(in|at|with|during|on|after|from|over|for)\s+$/.exec(low.slice(Math.max(0, v.i - 8), v.i));
+    const res = out(v.text, pw ? pw[1] : 'about', 'near');
+    if (res) { res.w = v.w; return res; }
+  }
+  if (prevTopic && (/^(it|that|this|which)\b/.test(low.trim()) || ctx.short)) return { text: prevTopic, prep: 'about', from: 'prev' };
+  return null;
+}
+
+const BODY_RE = /\b(back|head|knee|knees|leg|legs|arm|arms|neck|stomach|tummy|tooth|teeth|feet|foot|shoulder|shoulders|eyes|eye|throat|hand|hands|wrist|ankle|hip|hips|body|everything|muscles|chest|ear|ears)\s*$/;
+const EVAL_OK = true;
+function findHits(sents, folks) {
+  const hits = [];
+  let prevTopic = null, lastPerson = null;
+  sents.forEach((S0, si) => {
+    const sent = S0.orig.replace(/([A-Za-z])\1{2,}/g, '$1');
+    const elong = sent.length !== S0.orig.length;
+    const low = sent.toLowerCase().replace(/[’‘]/g, "'");
+    const toks = wordsWithPos(low);
+    const question = /\?\s*$/.test(sent);
+    const bang = (sent.match(/!/g) || []).length;
+    const contrastAt = toks.findIndex(t => /^(but|though|however|yet|although)$/.test(t.w));
+    const cands = [];
+    for (const P of FEEL_PATS) {
+      P.re.lastIndex = 0; let m;
+      while ((m = P.re.exec(low))) cands.push({ id: P.id, w: P.w, flag: P.flag, s: m.index, e: m.index + m[0].length, self: P.self || /n't|\bno\b|\bnot\b/.test(m[0]) });
+    }
+    for (const [re, id] of EMOJI_FEEL) { re.lastIndex = 0; let m; while ((m = re.exec(sent))) cands.push({ id, w: 1, s: Math.min(low.length, m.index), e: Math.min(low.length, m.index + m[0].length), self: true, emoji: true }); }
+    cands.sort((a, b) => (b.e - b.s) - (a.e - a.s) || a.s - b.s);
+    const taken = [];
+    for (const c of cands) {
+      if (!c.emoji && taken.some(t => c.s < t.e && c.e > t.s)) continue;
+      taken.push(c);
+    }
+    // who was last mentioned, for "her", "him", "them"
+    const personAt = i => {
+      let best = null;
+      for (const n of folks.names) { const re = new RegExp(`\\b${escRe(n)}\\b`, 'g'); let x; while ((x = re.exec(sent))) if (x.index < i && (!best || x.index > best.i)) best = { i: x.index, n }; }
+      ROLE_RE.lastIndex = 0; let r; while ((r = ROLE_RE.exec(low))) if (r.index < i && (!best || r.index > best.i)) best = { i: r.index, n: sent.slice(r.index, r.index + r[0].length) };
+      return best ? best.n : lastPerson;
+    };
+    const ctxBase = { sent, low, folks, prevTopic, taken, short: toks.filter(t => /[a-z]/.test(t.w)).length <= 4 };
+    for (const c of taken) {
+      const ti = toks.findIndex(t => t.s >= c.s);
+      const before = ti < 0 ? [] : toks.slice(Math.max(0, ti - 6), ti).map(t => t.w);
+      let back = [];
+      for (let k = before.length - 1; k >= 0; k--) { if ((BREAK_W.has(before[k]) && !(before[k] === 'so' && k === before.length - 1)) || /^[,;:]$/.test(before[k])) break; back.unshift(before[k]); }
+      let w = c.w, id = c.id, flipped = false;
+      if (id === 'hurt' && BODY_RE.test(low.slice(0, c.s))) continue;
+      if (!c.self && back.slice(-3).some(x => NEG_W.has(x)) && !back.includes('only')) {
+        const flip = NEG_FLIP[id];
+        if (!flip) continue;
+        id = flip[0]; w *= flip[1]; flipped = true;
+      }
+      // someone else's feeling ("Mum was stressed"), unless it's a judgement of them ("Tom was rude")
+      let other = false;
+      if (c.flag !== '^' && c.flag !== '>' && !c.emoji) {
+        const lastK = back.slice(-3);
+        const linkAt = lastK.findIndex(x => LINK_W.has(x));
+        if (linkAt >= 0 && !back.some(x => ME_W.has(x))) {
+          const subj = back.slice(0, back.length - lastK.length + linkAt);
+          const subjW = subj[subj.length - 1];
+          const origTok = subjW ? (sent.match(new RegExp(`\\b${escRe(subjW)}\\b`, 'i')) || [''])[0] : '';
+          if (subjW && (OTHER_SUBJ.has(subjW) || folks.names.includes(origTok))) other = true;
+        }
+      }
+      const p1 = back[back.length - 1], p2 = back[back.length - 2];
+      if (p1 && UP_W[p1]) w *= UP_W[p1] * (p2 && UP_W[p2] ? 1.15 : 1);
+      else if (p1 && DOWN_W[p1]) w *= DOWN_W[p1];
+      else if (p1 === 'of' && (p2 === 'kind' || p2 === 'sort')) w *= 0.6;
+      const tail = low.slice(c.e, c.e + 14);
+      if (/^\s+(a (little|bit)|slightly|kind of)\b/.test(tail)) w *= 0.6;
+      if (bang) w *= bang > 1 ? 1.35 : 1.2;
+      const origWord = sent.slice(c.s, c.e);
+      if (origWord.length >= 3 && origWord === origWord.toUpperCase() && /[A-Z]/.test(origWord)) w *= 1.35;
+      if (elong) w *= 1.15;
+      if (question) w *= 0.2;
+      if (/^(if|hopefully|maybe|might|would|wish|whenever)\b/.test(low.trim()) && id !== 'hopeful') w *= 0.5;
+      if (contrastAt >= 0) { if (ti > contrastAt) w *= 1.25; else if (ti >= 0) w *= 0.85; }
+      if (w < 0.08) continue;
+      let cause = null;
+      if (!c.emoji) {
+        const obj = OBJ_FEEL.has(c.id) || /^(dread|dreading|looking forward|can't wait|miss)/.test(low.slice(c.s, c.e));
+        const sitFirst = c.flag === '@' && /\s/.test(low.slice(c.s, c.e).trim()) && /^(snapped|missed|cancelled|bailed)/.test(low.slice(c.s));
+        cause = sitFirst ? null : findCause({ ...ctxBase, lastPerson: personAt(c.s) }, { ...c, obj });
+        if (!cause && c.flag === '@') cause = { text: trimPhrase(/^(missed|miss|didn't|kept|cancelled|bailed|couldn't|can't)/.test(low.slice(c.s)) ? 'I ' + sent.slice(c.s, c.e) : sent.slice(c.s, c.e), 8), prep: 'because', from: 'sit' };
+        if (cause && flipped && cause.prep === 'with') cause.prep = 'about';
+      }
+      hits.push({ id, w, si, seg: S0.seg, label: S0.label, cause, other });
+    }
+    // remember the most concrete thing in this sentence, and the last person, for the next one
+    const tk = findCause({ ...ctxBase, lastPerson }, { s: low.length, e: low.length });
+    const listy = (sent.match(/,/g) || []).length >= 2 && toks.length <= 12;
+    if (tk && !listy) prevTopic = tk.text; else if (!tk) prevTopic = prevTopic && ctxBase.short ? prevTopic : null;
+    lastPerson = personAt(low.length) || lastPerson;
+  });
+  return hits;
+}
+
+const EVENTS = {
+  stress: { up: ['deadline', 'exam', 'argument', 'argued', 'fight', 'running late', 'late for', 'busy', 'behind on', 'interview', 'presentation', 'bills', 'inbox'], dn: ['day off', 'holiday', 'weekend off', 'bath', 'massage'] },
+  social: { up: ['friend', 'friends', 'mum', 'mom', 'dad', 'family', 'partner', 'call', 'called', 'chat', 'chatted', 'party', 'met', 'together', 'team', 'date', 'visited', 'hang out', 'hung out', 'dinner with', 'lunch with', 'coffee with', 'sister', 'brother', 'colleague', 'came over', 'we'], dn: ['by myself', 'stayed in', 'no one', 'nobody', 'cancelled plans', 'cancelled'] },
+  productivity: { up: ['finished', 'done', 'completed', 'worked', 'wrote', 'built', 'studied', 'cleaned', 'organised', 'organized', 'shipped', 'fixed', 'progress', 'sorted', 'ticked', 'submitted', 'made', 'got through', 'sent it', 'paid', 'cooked', 'pitched'], dn: ['procrastinated', 'procrastinating', 'wasted', "couldn't focus", 'could not focus', 'unproductive', 'nothing done', 'scrolling', 'doomscrolling', 'skipped'] },
+  energy: { up: ['run', 'ran', 'gym', 'walk', 'walked', 'workout', 'swim', 'swam', 'yoga', 'dance', 'danced', 'hike', 'climb', 'climbing', 'cycled', 'bike ride', 'sunny', 'fresh air'], dn: ['sick', 'ill', 'headache', 'migraine', 'cold', 'flu', 'hangover', 'hungover', 'period pain', 'sofa', 'skipped the gym', 'skipped lunch', "didn't eat"] }
+};
+const FAM_ANIMAL = { excited: 'bunny', energised: 'bunny', amused: 'otter', connected: 'otter', loved: 'puppy', grateful: 'puppy', happy: 'piglet', proud: 'fox', focused: 'fox', inspired: 'duckling', hopeful: 'duckling', nervous: 'duckling', calm: 'frog', content: 'cat', cosy: 'cat', relieved: 'panda', rested: 'panda', sad: 'owl', lonely: 'owl', nostalgic: 'owl', disappointed: 'owl', tired: 'koala', drained: 'sloth', flat: 'sloth', bored: 'sloth', anxious: 'penguin', stressed: 'hamster', overwhelmed: 'hamster', restless: 'hamster', guilty: 'hedgehog', embarrassed: 'hedgehog', insecure: 'owl', frustrated: 'hedgehog', annoyed: 'hedgehog', angry: 'hedgehog', hurt: 'hedgehog', jealous: 'hedgehog' };
+
+function strengthOf(sum) { return sum >= 1.6 ? 3 : sum >= 0.75 ? 2 : 1; }
+function arcOf(hits, sents, guided) {
+  const segs = new Map();
+  for (const h of hits) {
+    if (h.w < 0.25) continue;
+    const s = segs.get(h.seg) || { seg: h.seg, label: h.label || '', pos: 0, neg: 0, n: 0 };
+    const v = FEELINGS[h.id].v * h.w;
+    if (v >= 0) s.pos += v; else s.neg += -v;
+    s.n++; segs.set(h.seg, s);
+  }
+  const pts = [...segs.values()].sort((a, b) => a.seg - b.seg).map(s => ({ l: s.label, v: r1(clamp((s.pos - s.neg) / Math.max(1, Math.sqrt(s.n)), -2, 2)), pos: s.pos, neg: s.neg }));
+  const pos = pts.reduce((a, p) => a + p.pos, 0), neg = pts.reduce((a, p) => a + p.neg, 0);
+  const out = { type: 'steady', label: '', pts: pts.map(p => ({ l: p.l, v: p.v })) };
+  const mood = pos + neg ? (pos - neg) / (pos + neg) : 0;
+  const strong = p => p.pos + p.neg >= 0.55;
+  if (pts.length >= 2 && (sents.length >= 2 || guided) && strong(pts[0]) && strong(pts[pts.length - 1])) {
+    const first = pts[0].v, last = pts[pts.length - 1].v;
+    let flips = 0; for (let i = 1; i < pts.length; i++) if (Math.sign(pts[i].v) && Math.sign(pts[i - 1].v) && Math.sign(pts[i].v) !== Math.sign(pts[i - 1].v)) flips++;
+    if (pts.length >= 3 && flips >= 2) out.type = 'updown';
+    else if (last - first >= 1.1 && first < 0) out.type = 'rise';
+    else if (first - last >= 1.1 && last < 0) out.type = 'fall';
+    else if (last - first >= 1.4) out.type = 'rise';
+    else if (first - last >= 1.4) out.type = 'fall';
+  }
+  if (out.type === 'steady' && pos >= 1 && neg >= 1 && Math.min(pos, neg) / Math.max(pos, neg) >= 0.45) out.type = 'mixed';
+  if (out.type === 'steady') out.type = mood > 0.25 ? 'good' : mood < -0.25 ? 'low' : (pos + neg ? 'even' : 'quiet');
+  if (!hits.some(h => h.w >= 0.3)) out.type = 'quiet';
+  out.label = ({ rise: 'Rough start, better finish', fall: 'Good start, harder finish', updown: 'Up and down', mixed: 'Mixed feelings', good: 'A good day', low: 'A heavy day', even: 'An even day', quiet: 'Not much said about feelings' })[out.type];
+  out.mood = r1(mood);
+  return out;
+}
+
+function feelRead(text, opts = {}) {
+  const raw = String(text || '');
+  const { sents, guided } = splitDay(raw);
+  const plain = sents.map(s => s.orig).join(' ');
+  const folks = findFolks(plain, opts.known || []);
+  const people = [...folks.names, ...folks.roles];
+  const hitsAll = findHits(sents, folks);
+  const hits = hitsAll.filter(h => !h.other);
+  // forced feelings (the writer corrected them)
+  let feelings;
+  const agg = new Map();
+  for (const h of hits) {
+    const a = agg.get(h.id) || { id: h.id, sum: 0, causes: [], segs: new Map() };
+    a.sum += h.w;
+    if (h.cause && h.cause.text && !a.causes.some(c => c.text.toLowerCase() === h.cause.text.toLowerCase())) a.causes.push(h.cause);
+    if (h.label) a.segs.set(h.label, (a.segs.get(h.label) || 0) + h.w);
+    agg.set(h.id, a);
+  }
+  if (opts.feelings) {
+    feelings = opts.feelings.filter(f => FEELINGS[f.id]).map(f => ({ id: f.id, s: clamp(Math.round(f.s) || 2, 1, 3), cause: f.cause || '', prep: f.prep || '', key: f.key || '', part: f.part || '', mine: !!f.mine }));
+  } else {
+    feelings = [...agg.values()].filter(a => a.sum >= 0.3).sort((a, b) => b.sum - a.sum).slice(0, 6).map(a => {
+      const c = a.causes[0];
+      const tk = c ? topicKey(c.text, folks, true) : null;
+      const part = [...a.segs].sort((x, y) => y[1] - x[1])[0];
+      return { id: a.id, s: strengthOf(a.sum), cause: c ? c.text : '', prep: c ? c.prep : '', key: tk ? tk.k : '', part: part ? part[0] : '' };
+    });
+  }
+  const fsum = id => opts.feelings ? ((feelings.find(f => f.id === id) || {}).s || 0) * 0.6 : (agg.get(id) || { sum: 0 }).sum;
+  // scores
+  const low = ' ' + plain.toLowerCase().replace(/[’‘]/g, "'") + ' ';
+  const raw5 = { joy: 0, stress: 0, social: 0, productivity: 0, energy: 0 };
+  for (const id of FEEL_IDS) { const s = fsum(id); if (!s) continue; for (const [m, v] of Object.entries(FEELINGS[id].fx)) raw5[m] += v * Math.min(s, 2.4); }
+  const factors = [];
+  for (const m of Object.keys(EVENTS)) {
+    const up = countHits(low, EVENTS[m].up), dn = countHits(low, EVENTS[m].dn);
+    raw5[m] += 0.45 * Math.min(up.n, 4) - 0.45 * Math.min(dn.n, 4);
+    up.hits.slice(0, 1).forEach(h => factors.push({ area: m, label: factorLabel(plain, h), effect: 1, ev: true }));
+    dn.hits.slice(0, 1).forEach(h => factors.push({ area: m, label: factorLabel(plain, h), effect: -1, ev: true }));
+  }
+  raw5.social += 0.5 * Math.min(3, people.length);
+  const scores = {};
+  for (const m of MID) scores[m] = clamp(Math.round(5 + 5 * Math.tanh(raw5[m] / 3)), 0, 10);
+  // factors from feelings with causes
+  const featured = [];
+  for (const f of feelings) {
+    const F = FEELINGS[f.id];
+    const [area, eff] = Object.entries(F.fx).sort((a, b) => Math.abs(b[1]) - Math.abs(a[1]))[0];
+    const label = f.cause ? capFirst(f.cause) : `Feeling ${F.adj}`;
+    featured.push({ area, label, effect: clamp(Math.round(Math.sign(eff) * f.s), -3, 3) || Math.sign(eff), feel: f.id });
+  }
+  const seenLab = new Set();
+  const allFac = [...featured, ...factors].filter(f => { const k = f.label.toLowerCase() + f.area; if (seenLab.has(k)) return false; seenLab.add(k); return true; }).slice(0, 6).map(({ ev, ...f }) => f);
+  // arc
+  const arc = opts.feelings ? null : arcOf(hits, sents, guided);
+  // topics for patterns
+  const stickersAll = []; for (const [id, re] of SIG_RE) if (re.test(low)) stickersAll.push(id);
+  const topics = [];
+  const addT = t => { if (t && !topics.some(x => x.k === t.k)) topics.push(t); };
+  people.forEach(p => addT({ k: 'p:' + p, n: p }));
+  stickersAll.forEach(s => addT({ k: 's:' + s, n: STICKERS[s].n }));
+  feelings.forEach(f => { if (f.key) addT({ k: f.key, n: f.cause }); });
+  const care = CARE_RE.test(raw) || CARE2_RE.test(raw);
+  const hedge = /\b(fine i guess|fine i suppose|it was fine|i'm fine|im fine|was ok i guess|whatever)\b/i.test(plain);
+  const out = {
+    feelings, arc, scores, factors: allFac, people,
+    stickers: matchStickers(plain), areas: matchAreas(plain), topics: topics.slice(0, 12), care, hedge,
+    snapshot: snapshotOf(sents, hits),
+    v: 2
+  };
+  const dom = feelings[0];
+  const both = id => feelings.some(f => f.id === id);
+  out.animal = care ? 'owl' : dom && (dom.s >= 2 || feelings.length === 1) ? (both('stressed') && both('focused') ? 'hamster' : FAM_ANIMAL[dom.id] || pickAnimal(scores, hashStr(raw))) : pickAnimal(scores, hashStr(raw));
+  out.title = titleOf(out, sents);
+  out.animalLine = animalLineOf(out);
+  return out;
+}
+function snapshotOf(sents, hits) {
+  const tidy = sents.map(s => tidySentence(s.orig.replace(/([A-Za-z])\1{2,}/g, '$1$1')));
+  const total = tidy.join(' ').length;
+  if (total <= 520) return tidy.join(' ');
+  const score = tidy.map((s, i) => (hits.some(h => h.si === i) ? 2 : 0) + (/[A-Z][a-z]+/.test(s.slice(1)) ? 0.5 : 0) + (i === 0 ? 0.6 : 0) + (i === tidy.length - 1 ? 0.6 : 0) + Math.min(1, s.length / 120));
+  const order = tidy.map((s, i) => i).sort((a, b) => score[b] - score[a]);
+  const keep = new Set(); let len = 0;
+  for (const i of order) { if (len + tidy[i].length > 520 && keep.size) continue; keep.add(i); len += tidy[i].length + 1; if (len > 460) break; }
+  return [...keep].sort((a, b) => a - b).map(i => tidy[i]).join(' ');
+}
+function causePhrase(f) { return f && f.cause ? `${f.prep || 'about'} ${f.cause}` : ''; }
+function titleOf(r, sents) {
+  const pos = r.feelings.find(f => FEELINGS[f.id].v > 0.3 && f.cause), neg = r.feelings.find(f => FEELINGS[f.id].v < -0.3 && f.cause);
+  let t = '';
+  const nouny = f => f && f.cause && !/^(i|that|how|when|because|you)\b/i.test(f.cause) && f.prep !== 'because';
+  if (r.arc && (r.arc.type === 'rise' || r.arc.type === 'fall') && pos && neg) {
+    const P = r.arc.type === 'rise' ? r.feelings.filter(f => FEELINGS[f.id].v > 0.3 && nouny(f)) : r.feelings.filter(f => FEELINGS[f.id].v < -0.3 && nouny(f));
+    const a = r.arc.type === 'rise' ? neg : pos;
+    const b = P.find(f => f.cause.toLowerCase() !== (a.cause || '').toLowerCase());
+    if (nouny(a) && b) t = `${capFirst(a.cause)}, then ${b.cause}`;
+  }
+  if (!t) {
+    const f = r.feelings.find(x => x.cause && x.cause.split(' ').length <= 4) || null;
+    if (f) t = `${FEELINGS[f.id].n} ${causePhrase(f)}`;
+  }
+  if (!t || t.split(' ').length > 8 || t.length > 50) {
+    const first = (sents[0] && sents[0].orig) || 'My day';
+    t = clip(first.split(/[.!?\n]/)[0] || 'My day', 38);
+  }
+  return capFirst(t.replace(/[.,;:]+$/, ''));
+}
+function animalLineOf(r) {
+  const A = ANIMALS[r.animal] || ANIMALS.cat;
+  const f = r.feelings[0];
+  if (f && f.cause) return clip(`${A.name} energy: ${FEELINGS[f.id].adj} ${toYou(causePhrase(f))}`, 90);
+  return `${A.name} energy: ${A.meaning}`;
+}
+const pickOne = (arr, seed) => arr[Math.abs(seed) % arr.length];
+function mochiReply(r, tone, seed = 0) {
+  if (r.care) return "That sounds really heavy. I'm glad you wrote it down. You don't have to carry it on your own.";
+  const F = r.feelings;
+  const pos = F.find(f => FEELINGS[f.id].v > 0.3), neg = F.find(f => FEELINGS[f.id].v < -0.3);
+  const cp = f => f && f.cause ? ' ' + toYou(causePhrase(f)) : '';
+  const bare = f => f && f.cause ? toYou(f.cause) : '';
+  const adj = f => FEELINGS[f.id].adj;
+  const T = tone || 'balanced';
+  const type = r.arc ? r.arc.type : (pos && neg ? 'mixed' : pos ? 'good' : neg ? 'low' : 'quiet');
+  let s = '';
+  if (type === 'rise' && neg && pos) {
+    s = pickOne([
+      `It started out ${adj(neg)}${cp(neg)}, but you ended up ${adj(pos)}${cp(pos)}. I love a turnaround.`,
+      `What a turnaround! From ${adj(neg)}${cp(neg)} to ${adj(pos)}${cp(pos)} by the end.`
+    ], seed);
+  } else if (type === 'fall' && neg && pos) {
+    s = pickOne([
+      `It started ${adj(pos)}${cp(pos)}, then you felt ${adj(neg)}${cp(neg)}. The good bit still counts.`,
+      `The good start still counts, even if you ended up ${adj(neg)}${cp(neg)}.`
+    ], seed);
+  } else if ((type === 'mixed' || type === 'updown') && neg && pos) {
+    s = pickOne([
+      `Lots of feelings in one day: ${adj(pos)}${cp(pos)} and ${adj(neg)}${cp(neg)}. Both can be true at once.`,
+      `A real mix today. Feeling ${adj(neg)}${cp(neg)} doesn't cancel out feeling ${adj(pos)}${cp(pos)}.`
+    ], seed);
+  } else if (pos && (!neg || FEELINGS[pos.id].v * pos.s >= -FEELINGS[neg.id].v * neg.s)) {
+    s = T === 'cheer' ? pickOne([`Look at you, ${adj(pos)}${cp(pos)}! More days like this please.`, `Yay! ${capFirst(adj(pos))}${cp(pos)} is the best kind of day.`], seed)
+      : T === 'tough' ? `Good day. Notice what made it work${pos.cause ? `: ${bare(pos)}` : ''}, and do more of it.`
+      : pickOne([`You sound ${adj(pos)}${cp(pos)}. That's lovely to read.`, `${pos.cause ? capFirst(bare(pos)) + ' left you' : 'You sound'} ${adj(pos)}. I'm keeping that one.`], seed);
+  } else if (neg) {
+    const fam = FEELINGS[neg.id].fam;
+    if (fam === 'tense') s = T === 'tough' ? `You sound ${adj(neg)}${cp(neg)}. What's one thing you can take off tomorrow's plate?` : `You sound ${adj(neg)}${cp(neg)}. That's a lot to carry, so be gentle with yourself tonight.`;
+    else if (fam === 'hot') s = T === 'tough' ? `Being ${adj(neg)}${cp(neg)} makes sense. Decide what you'll do about it, then let it rest.` : `No wonder you felt ${adj(neg)}${cp(neg)}. It's okay to be cross for a bit.`;
+    else if (neg.id === 'tired' || neg.id === 'drained') s = `You sound ${adj(neg)}. Rest counts as doing something, so let tonight be easy.`;
+    else if (neg.id === 'lonely') s = T === 'tough' ? `Feeling lonely${cp(neg)} is a signal. Who could you message tomorrow?` : `Feeling lonely${cp(neg)} is hard. I'm glad you told me, and I'm here.`;
+    else s = T === 'tough' ? `Today felt ${adj(neg)}. Tomorrow, try one small thing that usually helps.` : `I'm sorry you felt ${adj(neg)}${cp(neg)}. Thank you for telling me anyway.`;
+  } else {
+    s = 'Thanks for telling me about your day. How did it feel, though? Next time, add one feeling and I can read you better.';
+  }
+  if (r.hedge && neg && !/fine/.test(s)) s = `You said it was fine, but you sounded ${adj(neg)} too. ` + s;
+  return clip(s, 300);
+}
+
+/* ================= patterns across days ================= */
+const DEF_PREP = { proud: 'of', grateful: 'for', annoyed: 'with', frustrated: 'with', angry: 'at' };
+const WHY = {
+  savor: 'Noticing what reliably lifts you makes it easier to choose it on purpose (savoring).',
+  label: 'Putting a feeling into words can take some of the heat out of it (affect labelling).',
+  worry: 'A worry that keeps coming back is easier to deal with once you can see it clearly.',
+  week: 'Feelings tied to a day of the week usually come from routines, and routines can change.',
+  social: 'Time with the right people is one of the strongest everyday mood lifts (social connection).',
+  arcUp: 'Remembering that rough starts can end well makes the next rough start easier to sit through.',
+  arcDown: 'Evenings often carry the tiredness of the whole day, so small resets there pay off.',
+  streak: 'A feeling that sticks around for days is worth sharing with someone you trust.',
+  sleep: 'Sleep and rest shape mood more than most of us expect (sleep and mood).',
+  progress: 'Small wins you can see build motivation (the progress principle).',
+  range: 'Being able to name lots of different feelings is linked to handling them better (emotional granularity).'
+};
+function dayFeel(d) {
+  if (d._feel) return d._feel;
+  const map = new Map();
+  let arc = null, hedge = false;
+  const topics = new Map();
+  for (const e of d.list) {
+    const a = e.ai || {};
+    for (const f of a.feelings || []) {
+      if (!FEELINGS[f.id]) continue;
+      const cur = map.get(f.id) || { id: f.id, s: 0, causes: [], parts: [] };
+      cur.s = Math.max(cur.s, f.s || 1);
+      if (f.cause && !cur.causes.some(c => c.text.toLowerCase() === f.cause.toLowerCase())) cur.causes.push({ text: f.cause, prep: f.prep || 'about', key: f.key || '' });
+      if (f.part) cur.parts.push(f.part);
+      map.set(f.id, cur);
+    }
+    if (a.arc && a.arc.type) arc = a.arc;
+    if (a.hedge) hedge = true;
+    for (const t of a.topics || []) if (t && t.k) topics.set(t.k, t.n);
+    for (const p of a.people || []) topics.set('p:' + p, p);
+    for (const s of a.stickers || []) if (STICKERS[s]) topics.set('s:' + s, STICKERS[s].n);
+  }
+  d._feel = { feel: map, arc, hedge, topics };
+  return d._feel;
+}
+const DOW = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+function dateList(keys, n = 3) {
+  const ks = keys.slice(-n).map(k => k === dayKey() ? 'today' : k === addDays(dayKey(), -1) ? 'yesterday' : fmtShort(k));
+  return (keys.length > n ? 'most recently ' : '') + listJoin(ks);
+}
+const feelPrep = (id, prep) => (!prep || prep === 'about') && DEF_PREP[id] ? DEF_PREP[id] : (prep || 'about');
+function displayTopic(k, n) { return k.startsWith('p:') ? n : k.startsWith('s:') ? (STICKERS[k.slice(2)] ? STICKERS[k.slice(2)].n.toLowerCase() : n) : n; }
+
+// Looks across the diary for things worth telling the writer. Each pattern carries a card type, a score and the dates behind it.
+function findPatterns(dm, opts = {}) {
+  const days = [...dm.values()].sort((a, b) => a.day.localeCompare(b.day));
+  const out = [];
+  if (!days.length) return out;
+  const N = days.length;
+  const today = dayKey();
+  const recentW = k => Math.max(0.35, 1 - daysBetween(k, today) / 45);
+  days.forEach(dayFeel);
+  const F = d => d._feel.feel;
+  const hasF = (d, id) => F(d).has(id);
+  const valence = id => FEELINGS[id].v;
+
+  // 1. causes that keep coming up, good or bad
+  const causeMap = new Map();
+  for (const d of days) for (const f of F(d).values()) for (const c of f.causes) {
+    const key = c.key || ('w:' + c.text.toLowerCase());
+    const sign = valence(f.id) > 0.3 ? 1 : valence(f.id) < -0.3 ? -1 : 0;
+    if (!sign) continue;
+    const o = causeMap.get(key + sign) || { key, sign, text: c.text, days: new Set(), feels: new Map() };
+    o.days.add(d.day); o.feels.set(f.id, (o.feels.get(f.id) || 0) + 1);
+    if (c.text.length < o.text.length) o.text = c.text;
+    causeMap.set(key + sign, o);
+  }
+  for (const o of causeMap.values()) {
+    const ds = [...o.days].sort();
+    if (ds.length < 2) continue;
+    const feels = [...o.feels].sort((a, b) => b[1] - a[1]).map(x => x[0]);
+    const words = listJoin(feels.slice(0, 2).map(f => FEELINGS[f].adj));
+    const disp = toYou(o.text);
+    const recent = ds.filter(k => daysBetween(k, today) <= 21).length;
+    const score = 1 + ds.length * 1.4 + recent * 0.6 + recentW(ds[ds.length - 1]);
+    if (o.sign < 0) out.push({ kind: 'cause', type: 'heads-up', score: score + 0.5, feel: feels[0], dates: ds,
+      title: clip(`${capFirst(disp)} keeps coming up`, 60),
+      body: `You've felt ${words} about ${disp} on ${ds.length} days (${dateList(ds)}). It might be worth deciding one small thing to do about it.`, why: WHY.worry });
+    else out.push({ kind: 'cause', type: 'belief', score, feel: feels[0], dates: ds,
+      title: clip(`${capFirst(disp)} keeps lifting you`, 60),
+      body: `You felt ${words} ${feels.length === 1 ? feelPrep(feels[0], 'about') : 'about'} ${disp} on ${ds.length} days (${dateList(ds)}). That's something worth protecting.`, why: WHY.savor });
+  }
+
+  // 2. feelings tied to a day of the week
+  if (N >= 5) {
+    for (let w = 0; w < 7; w++) {
+      const on = days.filter(d => keyDate(d.day).getDay() === w), off = days.filter(d => keyDate(d.day).getDay() !== w);
+      if (on.length < 3 || off.length < 3) continue;
+      const ids = new Set(on.flatMap(d => [...F(d).keys()]));
+      for (const id of ids) {
+        const k = on.filter(d => hasF(d, id)).length;
+        const share = k / on.length, other = off.filter(d => hasF(d, id)).length / off.length;
+        if (k >= 2 && share >= 0.6 && share - other >= 0.35) {
+          out.push({ kind: 'weekday', type: valence(id) < 0 ? 'heads-up' : 'aha', score: 2 + k * 1.2 + (share - other) * 3, feel: id, dates: on.filter(d => hasF(d, id)).map(d => d.day),
+            title: `${DOW[w]}s often feel ${FEELINGS[id].adj}`,
+            body: `${k} of your ${on.length} ${DOW[w]}s had you feeling ${FEELINGS[id].adj}, compared with ${Math.round(other * 100)}% of other days.`, why: WHY.week });
+        }
+      }
+    }
+  }
+
+  // 3. people and things that go with better or harder days
+  if (N >= 4) {
+    const topicDays = new Map();
+    for (const d of days) for (const [k, n] of d._feel.topics) { if (k === 's:star' || k === 's:heart' || k.startsWith('w:')) continue; const o = topicDays.get(k) || { n, ds: [] }; o.ds.push(d); topicDays.set(k, o); }
+    for (const [k, o] of topicDays) {
+      if (o.ds.length < 2 || N - o.ds.length < 2 || (k.startsWith('w:') && FEEL_IDS.some(f => FEELINGS[f].adj === o.n))) continue;
+      const set = new Set(o.ds.map(d => d.day));
+      const rest = days.filter(d => !set.has(d.day));
+      const disp = displayTopic(k, o.n);
+      for (const [m, best, worst] of [['joy', 'happiest', 'flattest'], ['stress', 'most stressful', 'calmest']]) {
+        const a = avg(o.ds.map(d => d.scores[m])), b = avg(rest.map(d => d.scores[m]));
+        const diff = a - b;
+        if (Math.abs(diff) < 1.2) continue;
+        const good = m === 'stress' ? diff < 0 : diff > 0;
+        if (!good && k.startsWith('p:')) continue; // never pin hard days on a person
+        const word = m === 'stress' ? (diff > 0 ? best : worst) : (diff > 0 ? best : worst);
+        out.push({ kind: 'topic', type: good ? 'aha' : 'heads-up', score: 1.5 + Math.abs(diff) * 1.3 + o.ds.length * 0.4, metric: m, dates: o.ds.map(d => d.day),
+          title: clip(`${capFirst(disp)} days are your ${word}`, 60),
+          body: `On the ${o.ds.length} days with ${disp}, your ${MNAME[m].toLowerCase()} averaged ${r1(a)} out of 10, compared with ${r1(b)} on other days.`, why: k.startsWith('p:') ? WHY.social : good ? WHY.savor : WHY.worry });
+      }
+    }
+  }
+
+  // 4. how days tend to move
+  const last10 = days.slice(-10);
+  const arcs = t => last10.filter(d => d._feel.arc && d._feel.arc.type === t);
+  const rise = arcs('rise'), fall = arcs('fall');
+  if (rise.length >= 2) out.push({ kind: 'arc', type: 'perspective', score: 2 + rise.length * 1.2, dates: rise.map(d => d.day),
+    title: 'Your days often turn around', body: `On ${dateList(rise.map(d => d.day))}, a rough start ended better than it began. Next time a morning goes wrong, it may not be the whole story.`, why: WHY.arcUp });
+  if (fall.length >= 2) out.push({ kind: 'arc', type: 'heads-up', score: 2 + fall.length * 1.3, dates: fall.map(d => d.day),
+    title: 'Your days have been fading later on', body: `On ${dateList(fall.map(d => d.day))}, the day started well and got harder towards the end. A small evening reset might help.`, why: WHY.arcDown });
+  const mixed = arcs('mixed').concat(arcs('updown'));
+  if (mixed.length >= 3) out.push({ kind: 'arc', type: 'perspective', score: 1.5 + mixed.length, dates: mixed.map(d => d.day),
+    title: 'Lots of mixed days lately', body: `${mixed.length} of your last ${last10.length} days held good and hard feelings at the same time. That's normal, and it means you're noticing both.`, why: WHY.label });
+
+  // 5. a feeling that keeps showing up day after day
+  const lastDays = days.slice(-5).reverse();
+  if (lastDays.length >= 3 && daysBetween(lastDays[0].day, today) <= 2) {
+    for (const id of F(lastDays[0]).keys()) {
+      if (valence(id) > -0.3) continue;
+      let run = 0;
+      for (let i = 0; i < lastDays.length; i++) { if (i && daysBetween(lastDays[i].day, lastDays[i - 1].day) > 2) break; if (hasF(lastDays[i], id)) run++; else break; }
+      if (run >= 3) out.push({ kind: 'streak', type: 'heads-up', score: 4 + run, feel: id, dates: lastDays.slice(0, run).map(d => d.day).reverse(),
+        title: `${FEELINGS[id].n} ${run} days running`, body: `You've felt ${FEELINGS[id].adj} on each of your last ${run} days. If it keeps going, it might help to tell someone you trust how it's been.`, why: WHY.streak });
+    }
+  }
+
+  // 6. what changed this week
+  if (N >= 6) {
+    const wk = days.filter(d => daysBetween(d.day, today) < 7), pw = days.filter(d => { const x = daysBetween(d.day, today); return x >= 7 && x < 14; });
+    if (wk.length >= 2 && pw.length >= 2) {
+      const ids = new Set([...wk, ...pw].flatMap(d => [...F(d).keys()]));
+      for (const id of ids) {
+        const a = wk.filter(d => hasF(d, id)).length, b = pw.filter(d => hasF(d, id)).length;
+        if (a - b >= 2) out.push({ kind: 'shift', type: valence(id) < 0 ? 'heads-up' : 'belief', score: 2 + (a - b) * 1.3, feel: id, dates: wk.filter(d => hasF(d, id)).map(d => d.day),
+          title: `More ${FEELINGS[id].adj} days this week`, body: `${FEELINGS[id].n} came up on ${a} days this week, up from ${b} the week before.`, why: valence(id) < 0 ? WHY.worry : WHY.savor });
+        if (b - a >= 2 && valence(id) < 0) out.push({ kind: 'shift', type: 'belief', score: 2 + (b - a), feel: id, dates: pw.filter(d => hasF(d, id)).map(d => d.day),
+          title: `Less ${FEELINGS[id].adj} this week`, body: `${FEELINGS[id].n} came up on ${a} day${a === 1 ? '' : 's'} this week, down from ${b} the week before. Something's working.`, why: WHY.progress });
+      }
+    }
+  }
+
+  // 7. "fine" days, and how many feelings you can name
+  const hedged = days.filter(d => d._feel.hedge);
+  if (hedged.length >= 2) out.push({ kind: 'hedge', type: 'perspective', score: 2 + hedged.length, dates: hedged.map(d => d.day),
+    title: '"Fine" is doing a lot of work', body: `You've called ${hedged.length} days "fine". Next time, try naming one real feeling, even a small one.`, why: WHY.label });
+  const month = days.filter(d => daysBetween(d.day, today) < 30);
+  const range = new Set(month.flatMap(d => [...F(d).keys()]));
+  if (range.size >= 6) out.push({ kind: 'range', type: 'belief', score: 1 + range.size * 0.2, dates: [],
+    title: `You've named ${range.size} different feelings this month`, body: `From ${listJoin([...range].slice(0, 3).map(id => FEELINGS[id].adj))} to ${FEELINGS[[...range][range.size - 1]].adj}. Noticing that range is a skill, and you're using it.`, why: WHY.range });
+
+  // 8. what makes your best feelings happen
+  const posCount = new Map();
+  for (const d of days) for (const f of F(d).values()) if (valence(f.id) > 0.8) { const o = posCount.get(f.id) || { n: 0, causes: [] }; o.n++; for (const c of f.causes) o.causes.push(toYou(c.text)); posCount.set(f.id, o); }
+  const topPos = [...posCount].sort((a, b) => b[1].n - a[1].n)[0];
+  if (topPos && topPos[1].n >= 2 && topPos[1].causes.length) {
+    const cs = [...new Set(topPos[1].causes)].slice(0, 3);
+    out.push({ kind: 'best', type: 'belief', score: 1.5 + topPos[1].n * 0.5, feel: topPos[0], dates: [],
+      title: `You know what makes you ${FEELINGS[topPos[0]].adj}`, body: `${FEELINGS[topPos[0]].n} showed up on ${topPos[1].n} days, with ${listJoin(cs)}. You made those happen.`, why: WHY.savor });
+  }
+  return out.sort((a, b) => b.score - a.score);
+}
+
+try { window.__mochiRead = t => feelRead(t); } catch {}
+/* the on-device read, in the shape the rest of the app stores */
+function quickRead(text, opts = {}) {
+  const ctx = typeof readCtx === 'function' ? readCtx() : {};
+  const r = feelRead(text, { known: ctx.known || [], feelings: opts.feelings });
   return {
-    title: title.charAt(0).toUpperCase() + title.slice(1),
-    snapshot: clip(first, 520),
-    scores, factors: factors.slice(0, 6), animal: pickAnimal(scores, hashStr(text)), animalLine: '',
-    stickers, people, areas,
-    reply: care ? "That sounds really heavy. I'm glad you wrote it down. You don't have to carry it on your own." : (scores.stress >= 7 ? 'Thanks for telling me. That sounds like a lot to hold. Be gentle with yourself tonight.' : replies[top]),
-    care, src: 'quick', at: Date.now()
+    title: r.title, snapshot: r.snapshot, scores: r.scores, factors: r.factors, animal: r.animal, animalLine: r.animalLine,
+    stickers: r.stickers, people: r.people, areas: r.areas, feelings: r.feelings, arc: r.arc || opts.arc || null, topics: r.topics, hedge: r.hedge,
+    reply: mochiReply(opts.arc && !r.arc ? Object.assign({}, r, { arc: opts.arc }) : r, ctx.tone, hashStr(text)), care: r.care, src: 'quick', v: 2, at: Date.now()
   };
 }
+const ARC_TYPES = ['rise', 'fall', 'mixed', 'updown', 'good', 'low', 'even', 'quiet'];
 function normAI(r, text) {
   const o = r && typeof r === 'object' && !Array.isArray(r) ? r : {};
   const q = quickRead(text);
@@ -1125,6 +1949,18 @@ function normAI(r, text) {
     effect: clamp(Math.round(Number(f && f.effect) || 0), -3, 3)
   })).filter(f => f.area && f.label && f.effect).slice(0, 8);
   const uniq = a => [...new Set(a)];
+  const folks = findFolks(text, (readCtx().known || []));
+  const feelings = (Array.isArray(o.feelings) ? o.feelings : []).map(f => {
+    if (!f || !FEELINGS[f.id]) return null;
+    const cause = str(f.cause, 60);
+    const tk = cause ? topicKey(cause, folks, true) : null;
+    return { id: f.id, s: clamp(Math.round(Number(f.strength) || 2), 1, 3), cause, prep: cause ? str(f.prep, 14, 'about').toLowerCase() : '', key: tk ? tk.k : '', part: str(f.part, 20) };
+  }).filter(Boolean).filter((f, i, a) => a.findIndex(x => x.id === f.id) === i).slice(0, 6);
+  let arc = null;
+  if (o.arc && ARC_TYPES.includes(o.arc.type)) {
+    const pts = (Array.isArray(o.arc.points) ? o.arc.points : []).map(p => p && isFinite(Number(p.v)) ? { l: str(p.l || p.label, 16), v: clamp(r1(Number(p.v)), -2, 2) } : null).filter(Boolean).slice(0, 5);
+    arc = { type: o.arc.type, label: str(o.arc.label, 40, (q.arc && q.arc.type === o.arc.type && q.arc.label) || capFirst(o.arc.type)), pts };
+  }
   return {
     title: str(o.title, 60, q.title),
     snapshot: str(o.snapshot, 1400, q.snapshot),
@@ -1134,9 +1970,10 @@ function normAI(r, text) {
     stickers: uniq((Array.isArray(o.stickers) ? o.stickers : []).filter(s => STICKERS[s])).slice(0, 3),
     people: uniq((Array.isArray(o.people) ? o.people : []).filter(p => typeof p === 'string' && p.trim()).map(p => p.trim().slice(0, 30))).slice(0, 8),
     areas: uniq((Array.isArray(o.areas) ? o.areas : []).filter(a => AREAS[a])).slice(0, 4),
+    feelings: feelings.length ? feelings : q.feelings, arc: arc || q.arc, topics: q.topics, hedge: q.hedge,
     reply: str(o.reply, 280, q.reply),
-    care: !!o.care || CARE_RE.test(text),
-    src: 'claude', at: Date.now()
+    care: !!o.care || q.care,
+    src: 'claude', v: 2, at: Date.now()
   };
 }
 
@@ -1181,10 +2018,11 @@ function aboutWriter(meta) {
   out.push(toneLine(meta.tone));
   return out.join('\n');
 }
+function feelLine(a) { return (a.feelings || []).map(f => f.id + (f.cause ? ` (${f.cause})` : '')).join(', ') || '-'; }
 function dayLine(e, n = 160) {
   const a = e.ai; if (!a) return '';
   const s = a.scores;
-  return `${e.day}: joy ${s.joy}, stress ${s.stress}, social ${s.social}, productivity ${s.productivity}, energy ${s.energy}; animal ${a.animal}; areas ${(a.areas || []).join('/') || '-'}; ${clip(a.snapshot, n)}`;
+  return `${e.day}: joy ${s.joy}, stress ${s.stress}, social ${s.social}, productivity ${s.productivity}, energy ${s.energy}; feelings ${feelLine(a)}; animal ${a.animal}; areas ${(a.areas || []).join('/') || '-'}; ${clip(a.snapshot, n)}`;
 }
 function entryPrompt(e, meta, recent) {
   return `You are Mochi, the gentle diary buddy inside a journaling app called Mochi Diary. Read one diary entry and reply with JSON only.
@@ -1208,9 +2046,12 @@ Reply with one JSON object with exactly these keys:
  "stickers": ["0-3 ids from the sticker list for concrete things they mentioned"],
  "people": ["names of people or pets they mentioned"],
  "areas": ["1-4 life areas from: ${AREA_IDS.join(', ')}"],
+ "feelings": [{"id":"one feeling id from the feelings list","strength":1-3,"cause":"2-5 words from the entry naming what it was about, or empty","prep":"about|with|for|of|after|because","part":"Morning|Daytime|Evening|Late, or empty"}],
+ "arc": {"type":"rise|fall|mixed|updown|good|low|even","label":"max 5 words, e.g. 'Rough start, better finish'","points":[{"l":"Morning","v":-2..2}]},
  "reply": "max 30 words: Mochi's reply to the writer, warm and specific to one detail, in the tone they like. No emoji. No questions about sensitive details.",
  "care": false
 }
+Feelings: 1-6 feelings the WRITER felt (not other people's), strongest first, including quiet ones they only hint at. Strength 1 = a little, 2 = clearly, 3 = strongly. Ids: ${FEEL_IDS.join(', ')}. The arc shows how their mood moved through the day, with 1-5 points.
 Scores are integers. 5 is an ordinary day. Stress: 10 means very stressed. Give 2-7 factors; for stress, a positive effect means it raised stress.
 Animals: ${ANIMAL_MENU}.
 Stickers: ${STICKER_MENU}.
@@ -1269,7 +2110,7 @@ function exampleEntries() {
   };
   const S = (joy, stress, social, productivity, energy) => ({ joy, stress, social, productivity, energy });
   const F = (area, label, effect) => ({ area, label, effect });
-  return [
+  const list = [
     mk(-1, 21, "Work was fine, mostly emails and one long meeting that could have been an email. Walked Biscuit at lunch in the park and it was actually sunny for once. Sam made homemade pizza tonight and we watched two episodes of our show. Laughed a lot. Feeling cosy.",
       { title: 'Pizza night with Sam', snapshot: "Work was quiet, apart from one long meeting that could have been an email. At lunch I walked Biscuit in the park, and it was actually sunny for once. Sam made homemade pizza and we watched two episodes of our show, laughing a lot. I'm ending the day feeling cosy.",
         scores: S(8, 3, 7, 5, 6), factors: [F('joy', 'Homemade pizza with Sam', 2), F('social', 'Watching our show together', 2), F('energy', 'Sunny walk with Biscuit', 1), F('stress', 'One long meeting', 1)],
@@ -1323,6 +2164,8 @@ function exampleEntries() {
         animal: 'bear', animalLine: 'Steady bear energy: market, curry and the budget, all sorted', stickers: ['bag', 'onigiri', 'coin'], people: ['Sam'], areas: ['love', 'food', 'money', 'home'],
         reply: "Market, curry and the budget all done? Future you is going to love that frozen curry." })
   ];
+  for (const e of list) { const r = feelRead(e.text); Object.assign(e.ai, { feelings: r.feelings, arc: r.arc, topics: r.topics, hedge: r.hedge, v: 2 }); }
+  return list;
 }
 
 /* ================= state ================= */
@@ -1357,16 +2200,56 @@ function sanitizeEntry(e) {
     photo: e.photo && typeof e.photo === 'object' && okId(e.photo.id) ? e.photo : null,
     ai: null, status: ['ready', 'reading', 'pending'].includes(e.status) ? e.status : 'ready',
     rating: clamp(Number(e.rating) || 0, 0, 5), note: typeof e.note === 'string' ? e.note : '', example: !!e.example,
-    created: Number(e.created) || Date.now(), updated: Number(e.updated) || 0
+    created: Number(e.created) || Date.now(), updated: Number(e.updated) || 0,
+    feelFix: cleanFix(e.feelFix)
   };
   const a = e.ai;
   if (a && typeof a === 'object' && a.scores && MID.every(m => isFinite(Number(a.scores[m])))) {
     out.ai = Object.assign({ title: '', snapshot: '', factors: [], animal: 'cat', animalLine: '', stickers: [], people: [], areas: [], reply: '', care: false, src: 'quick' }, a);
     if (!ANIMALS[out.ai.animal]) out.ai.animal = 'cat';
     out.ai.stickers = (out.ai.stickers || []).filter(s => STICKERS[s]);
+    out.ai.feelings = (Array.isArray(out.ai.feelings) ? out.ai.feelings : []).filter(f => f && FEELINGS[f.id]).map(f => Object.assign({ cause: '', prep: '', key: '', part: '' }, f, { s: clamp(Math.round(Number(f.s)) || 2, 1, 3) })).slice(0, 8);
+    if (!out.ai.arc || typeof out.ai.arc !== 'object' || !ARC_TYPES.includes(out.ai.arc.type)) out.ai.arc = null;
+    if (!Array.isArray(out.ai.topics)) out.ai.topics = [];
   }
   if (!out.ai && out.text) out.ai = quickRead(out.text);
   return out;
+}
+function cleanFix(x) {
+  if (!x || typeof x !== 'object') return null;
+  const add = (Array.isArray(x.add) ? x.add : []).filter(f => f && FEELINGS[f.id]).map(f => ({ id: f.id, s: clamp(Math.round(Number(f.s)) || 2, 1, 3) })).slice(0, 8);
+  const drop = (Array.isArray(x.drop) ? x.drop : []).filter(id => FEELINGS[id]).slice(0, 20);
+  return add.length || drop.length ? { add, drop } : null;
+}
+// names Mochi already knows: from your notes and earlier days
+function readCtx() {
+  if (!S.meta) return {};
+  const c = readCtx.c;
+  if (c && c.n === S.entries.length && c.notes === S.meta.notes && c.tone === S.meta.tone) return c.v;
+  const known = new Set();
+  for (const w of (S.meta.notes || '').match(/\b[A-Z][a-z]{1,15}\b/g) || []) if (!NOT_NAMES.has(w) && !MORE_NOT.has(w)) known.add(w);
+  for (const e of S.entries) for (const p of (e.ai && e.ai.people) || []) if (/^[A-Z][a-z]{1,15}$/.test(p) && !ROLE_NAME[p.toLowerCase()]) known.add(p);
+  const v = { known: [...known].slice(0, 60), tone: S.meta.tone };
+  readCtx.c = { n: S.entries.length, notes: S.meta.notes, tone: S.meta.tone, v };
+  return v;
+}
+// the writer's own corrections always win over Mochi's read
+function applyFix(e) {
+  const fx = e.feelFix; if (!fx || !e.ai) return false;
+  let fl = (e.ai.feelings || []).filter(f => !fx.drop.includes(f.id)).map(f => Object.assign({}, f));
+  for (const a of fx.add) { const cur = fl.find(f => f.id === a.id); if (cur) { cur.s = a.s; cur.mine = true; } else fl.push({ id: a.id, s: a.s, cause: '', prep: '', key: '', part: '', mine: true }); }
+  fl.sort((x, y) => y.s - x.s);
+  if (e.ai.src === 'claude') { e.ai.feelings = fl; return true; }
+  const keep = { snapshot: e.ai.snapshot, arc: e.ai.arc, at: e.ai.at, src: e.ai.src, title: e.ai.title, reply: e.ai.reply, animalLine: e.ai.animalLine };
+  const r = quickRead(e.text, { feelings: fl, arc: e.ai.arc });
+  e.ai = Object.assign(r, { snapshot: keep.snapshot || r.snapshot, arc: keep.arc, at: keep.at || r.at, src: keep.src === 'example' ? 'example' : 'quick' });
+  if (keep.src === 'example') Object.assign(e.ai, { title: keep.title, reply: keep.reply, animalLine: keep.animalLine });
+  return true;
+}
+function setFix(e, fn) {
+  const fx = e.feelFix ? clone(e.feelFix) : { add: [], drop: [] };
+  fn(fx);
+  e.feelFix = cleanFix(fx);
 }
 const byId = id => S.entries.find(e => e.id === id);
 function sortEntries() { S.entries.sort((a, b) => b.day.localeCompare(a.day) || b.at - a.at); }
@@ -1467,16 +2350,45 @@ function entryCard(e) {
   const pills = [];
   if (e.status === 'reading') pills.push(`<span class="pill acc">${ic('sparkle')}Mochi is reading…</span>`);
   else if (e.status === 'pending') pills.push(`<button class="pill acc" data-act="reread" data-id="${e.id}">${ic('refresh')}Ask Mochi to read</button>`);
-  else if (a && a.src === 'quick') pills.push(`<span class="pill" title="A quick read made without Claude">Quick read</span>`);
+  else if (a && a.src === 'quick' && !TAURI) pills.push(`<span class="pill" title="Read on this device, without Claude">Quick read</span>`);
   if (e.example) pills.push(`<span class="pill">Example</span>`);
   return `<article class="ecard" data-act="open-entry" data-id="${e.id}" role="button" tabindex="0" aria-label="${esc(fmtDay(e.day))}: ${esc(a ? a.title : 'Entry')}">
     ${sceneHTML(e)}
     <div class="ec-body">
       <h3 class="ec-title">${esc(a ? a.title : clip(e.text, 40))}</h3>
+      ${a && e.status !== 'reading' && (a.feelings || []).length ? `<div class="ec-feel">${feelChips(a.feelings, 3, a.arc)}</div>` : ''}
       <p class="ec-snap">${esc(a ? a.snapshot : e.text)}</p>
       <div class="ec-foot">${a && e.status !== 'reading' ? miniScores(a.scores) : ''}${pills.join('')}</div>
     </div>
   </article>`;
+}
+const STR_WORD = ['a little', 'clearly', 'strongly'];
+function feelStyle(id) { const f = FAMS[FEELINGS[id].fam]; return `--fc:${f.c};--fs:${f.s}`; }
+function feelChips(list, n = 3, arc = null) {
+  const top = list.slice(0, n);
+  if (!top.length) return '';
+  if (arc && (arc.type === 'rise' || arc.type === 'fall') && top.length >= 2) {
+    const neg = list.find(f => FEELINGS[f.id].v < -0.3), pos = list.find(f => FEELINGS[f.id].v > 0.3);
+    if (neg && pos) { const [a, b] = arc.type === 'rise' ? [neg, pos] : [pos, neg]; return `<span class="fmini" style="${feelStyle(a.id)}"><i></i>${FEELINGS[a.id].n}</span><span class="farrow" aria-label="then">→</span><span class="fmini" style="${feelStyle(b.id)}"><i></i>${FEELINGS[b.id].n}</span>`; }
+  }
+  return top.map(f => `<span class="fmini" style="${feelStyle(f.id)}"><i></i>${FEELINGS[f.id].n}</span>`).join('');
+}
+function arcSVG(arc) {
+  const pts = (arc && arc.pts) || [];
+  if (pts.length < 2) return '';
+  const W = 320, H = 96, L = 18, Rr = 18, T = 12, B = 26, n = pts.length;
+  const x = i => L + i * (W - L - Rr) / (n - 1), y = v => T + (2 - v) / 4 * (H - T - B);
+  const P = pts.map((p, i) => [x(i), y(p.v)]);
+  return `<svg class="arcsvg" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(arc.label || 'How the day moved')}">
+    <line x1="${L}" x2="${W - Rr}" y1="${y(0)}" y2="${y(0)}" class="arc0"/>
+    <path d="${smoothPath(P)}" class="arcl"/>
+    ${P.map((q, i) => `<circle cx="${q[0].toFixed(1)}" cy="${q[1].toFixed(1)}" r="5.5" class="${pts[i].v >= 0 ? 'arcp' : 'arcn'}"/><text x="${q[0].toFixed(1)}" y="${H - 6}" text-anchor="${i === 0 ? 'start' : i === n - 1 ? 'end' : 'middle'}" class="arct">${esc(pts[i].l || '')}</text>`).join('')}
+  </svg>`;
+}
+function openFeelPicker(title, onPick, current = []) {
+  const groups = Object.keys(FAMS).map(fam => `<div class="fgroup"><span class="lbl">${FAMS[fam].n}</span><div class="chips">${FEEL_IDS.filter(id => FEELINGS[id].fam === fam).map(id => `<button class="fpick" style="${feelStyle(id)}" data-pick="${id}" aria-pressed="${current.includes(id)}"><i></i>${FEELINGS[id].n}</button>`).join('')}</div></div>`).join('');
+  const L = openLayer(sheetHTML(`${xBtn()}<span class="t">${esc(title)}</span><span style="width:44px"></span>`, `<div class="stack">${groups}</div>`, '', 'half'), { id: 'feelpick' });
+  L.addEventListener('click', ev => { const b = ev.target.closest('[data-pick]'); if (!b) return; ev.stopPropagation(); closeLayer(L); onPick(b.dataset.pick); });
 }
 function greeting() {
   const h = new Date().getHours();
@@ -1516,6 +2428,7 @@ function vDiary() {
     html += `<section class="card vibe" data-act="open-entry" data-id="${ltd.id}" role="button" tabindex="0">
       <div class="vibe-top"><div class="ani-badge">${animalSVG(td.animal)}</div>
       <div class="vibe-txt"><span class="eyebrow">Today's vibe</span><h2>${ANIMALS[td.animal].name} energy</h2><p>${esc(ltd.ai.animalLine || 'Feeling ' + ANIMALS[td.animal].meaning + '.')}</p></div></div>
+      ${(() => { const df = dayFeel(td); const fl = [...df.feel.values()].sort((x, y) => y.s - x.s); return fl.length ? `<div class="vfeel"><span class="eyebrow">How you felt${df.arc && df.arc.label && !['quiet', 'even'].includes(df.arc.type) ? ` · ${esc(df.arc.label)}` : ''}</span><div class="chips">${fl.slice(0, 5).map(f => `<span class="fmini lg" style="${feelStyle(f.id)}"><i></i>${FEELINGS[f.id].n}${f.causes[0] ? `<small>${esc(toYou(feelPrep(f.id, f.causes[0].prep) + ' ' + f.causes[0].text))}</small>` : ''}</span>`).join('')}</div></div>` : ''; })()}
       ${scoresRow(td.scores)}
       ${td.factors.length ? `<div class="factors"><span class="eyebrow">What shaped today</span>${topFactors(td.factors).map(facRow).join('')}</div>` : ''}
     </section>`;
@@ -1554,6 +2467,19 @@ function normCards(r) {
     .filter(c => c.title && c.body).slice(0, 5);
 }
 function quickCards(dm) {
+  const disliked = new Set((S.meta.feedback || []).filter(f => f.vote < 0).map(f => f.t));
+  const pats = findPatterns(dm).filter(p => !disliked.has(p.title));
+  const out = [];
+  const usedFeel = new Set();
+  for (const type of ['aha', 'heads-up', 'belief', 'perspective']) {
+    const p = pats.find(x => x.type === type && !out.some(o => o.title === x.title) && !(x.feel && usedFeel.has(x.feel + x.kind)));
+    if (p) { out.push({ type, title: p.title, body: p.body, why: p.why, dates: (p.dates || []).slice(-4), vote: 0 }); if (p.feel) usedFeel.add(p.feel + p.kind); }
+  }
+  for (const c of scoreCards(dm)) if (out.length < 4 && !out.some(o => o.type === c.type) && !disliked.has(c.title)) out.push(c);
+  const order = ['aha', 'heads-up', 'belief', 'perspective'];
+  return out.sort((a, b) => order.indexOf(a.type) - order.indexOf(b.type)).slice(0, 4);
+}
+function scoreCards(dm) {
   const days = [...dm.values()].sort((a, b) => a.day.localeCompare(b.day));
   const out = [];
   if (!days.length) return out;
@@ -1607,7 +2533,7 @@ async function makeCards(force) {
     persistMeta(); render(); return;
   }
   const days = [...dm.values()].sort((a, b) => b.day.localeCompare(a.day)).slice(0, 21);
-  const lines = days.map(d => `${d.day}: joy ${d.scores.joy}, stress ${d.scores.stress}, social ${d.scores.social}, productivity ${d.scores.productivity}, energy ${d.scores.energy}; animal ${d.animal}; areas ${d.areas.join('/') || '-'}; factors: ${d.factors.slice(0, 5).map(f => `${f.label} (${f.area} ${f.effect > 0 ? '+' : ''}${f.effect})`).join(', ') || '-'}; ${clip(d.list.map(e => e.ai.snapshot).join(' '), 240)}`);
+  const lines = days.map(d => `${d.day}: joy ${d.scores.joy}, stress ${d.scores.stress}, social ${d.scores.social}, productivity ${d.scores.productivity}, energy ${d.scores.energy}; feelings ${d.list.map(e => feelLine(e.ai)).join(', ')}; mood arc ${(d.list[d.list.length - 1].ai.arc || {}).type || '-'}; animal ${d.animal}; areas ${d.areas.join('/') || '-'}; factors: ${d.factors.slice(0, 5).map(f => `${f.label} (${f.area} ${f.effect > 0 ? '+' : ''}${f.effect})`).join(', ') || '-'}; ${clip(d.list.map(e => e.ai.snapshot).join(' '), 240)}`);
   const fb = S.meta.feedback;
   const fbs = { liked: fb.filter(f => f.vote > 0).slice(-8).map(f => f.t), disliked: fb.filter(f => f.vote < 0).slice(-8).map(f => f.t + (f.why ? ` (${f.why})` : '')) };
   S.cardsBusy = true; S.cardsCtl = new AbortController(); render();
@@ -1645,13 +2571,15 @@ function vCards() {
   html += c.list.map((k, i) => `<section class="card icard t-${k.type}">
     <span class="itype"><i></i>${CARD_TYPES[k.type]}</span>
     <h3>${esc(k.title)}</h3><p>${esc(k.body)}</p>
+    ${(k.dates || []).filter(x => dm.get(x)).length ? `<div class="chips">${k.dates.filter(x => dm.get(x)).map(x => `<button class="chip acc" data-act="open-entry" data-id="${dm.get(x).last.id}">${esc(fmtShort(x))}</button>`).join('')}</div>` : ''}
     ${k.why ? `<div class="why">${ic('info')}<span>${esc(k.why)}</span></div>` : ''}
     <div class="ifoot"><span class="sp">${k.vote > 0 ? 'Mochi will write more like this' : k.vote < 0 ? (k.why2 ? 'Got it, thanks' : 'What was off?') : 'Was this helpful?'}</span>
       <button class="vote" data-act="vote" data-i="${i}" data-v="1" aria-pressed="${k.vote > 0}" aria-label="Helpful">${ic('up')}</button>
       <button class="vote" data-act="vote" data-i="${i}" data-v="-1" aria-pressed="${k.vote < 0}" aria-label="Not helpful">${ic('dn')}</button></div>
     ${k.vote < 0 && !k.why2 ? `<div class="chips">${['Too basic', 'Not true for me', 'Wrong tone', 'Not now'].map(w => `<button class="chip" data-act="why" data-i="${i}" data-w="${w}">${w}</button>`).join('')}</div>` : ''}
   </section>`).join('');
-  html += `<div style="display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap;padding:0 4px"><span class="small muted">${c.src === 'quick' ? 'Quick cards, made on this device.' : `Written at ${fmtTime(c.at)} from ${c.n} day${c.n === 1 ? '' : 's'}.`}</span>${aiOK() ? `<button class="btn sm sec" data-act="make-cards" data-force="1">${ic('refresh')}New cards</button>` : ''}</div>`;
+  html += `<div style="display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap;padding:0 4px"><span class="small muted">${c.src === 'quick' ? `Made on this ${TAURI ? HOST : 'device'} from your feelings across ${c.n} day${c.n === 1 ? '' : 's'}.` : `Written at ${fmtTime(c.at)} from ${c.n} day${c.n === 1 ? '' : 's'}.`}</span>${aiOK() ? `<button class="btn sm sec" data-act="make-cards" data-force="1">${ic('refresh')}New cards</button>` : ''}</div>`;
+  if (!aiOK()) html += `<div style="display:flex;justify-content:flex-end;padding:0 4px;margin-top:-8px"><button class="btn sm sec" data-act="make-cards" data-force="1">${ic('refresh')}Look again</button></div>`;
   if (c.src === 'quick' && AI.state !== 'ready' && !TAURI) html += `<p class="small muted" style="margin:0 4px">Open Mochi Diary inside Claude and allow it to use Claude for cards written from your actual days.</p>`;
   return html;
 }
@@ -1727,6 +2655,7 @@ function vTrends() {
     if (open) html += metricDetail(m, keys, inRange, val);
   }
   html += `</section>`;
+  html += feelingsCard(inRange);
   // balance
   if (inRange.length) {
     const vals = {}; let mx = 0;
@@ -1742,6 +2671,40 @@ function vTrends() {
   }
   html += calendarCard(dm) + zooCard(dm);
   return html;
+}
+function feelingsCard(days) {
+  if (!days.length) return '';
+  days.forEach(dayFeel);
+  const stat = new Map();
+  for (const d of days) for (const f of d._feel.feel.values()) {
+    const o = stat.get(f.id) || { id: f.id, days: [], s: 0, causes: new Map(), parts: new Map(), dows: new Map() };
+    o.days.push(d); o.s += f.s;
+    for (const c of f.causes) { const k = c.text.toLowerCase(); const x = o.causes.get(k) || { text: c.text, prep: c.prep, n: 0 }; x.n++; o.causes.set(k, x); }
+    for (const pt of f.parts) o.parts.set(pt, (o.parts.get(pt) || 0) + 1);
+    const w = keyDate(d.day).getDay(); o.dows.set(w, (o.dows.get(w) || 0) + 1);
+    stat.set(f.id, o);
+  }
+  const list = [...stat.values()].sort((a, b) => b.days.length - a.days.length || b.s - a.s).slice(0, 8);
+  if (!list.length) return `<section class="card"><div class="card-h"><h2>Feelings</h2></div><p class="muted" style="margin:0">Mochi hasn't spotted named feelings in these days yet. Try adding one or two words about how things felt.</p></section>`;
+  const arcs = {}; for (const d of days) { const t = d._feel.arc && d._feel.arc.type; if (t) arcs[t] = (arcs[t] || 0) + 1; }
+  const arcPills = [['rise', 'Turned around'], ['fall', 'Faded later'], ['mixed', 'Mixed'], ['updown', 'Up and down'], ['good', 'Good all through'], ['low', 'Heavy']].filter(([k]) => arcs[k]).map(([k, l]) => `<span class="pill">${l} <b class="num">${arcs[k]}</b></span>`).join('');
+  const max = list[0].days.length;
+  return `<section class="card fcard"><div class="card-h"><h2>Feelings</h2><span class="small muted num">${days.length} day${days.length === 1 ? '' : 's'}</span></div>
+    <div class="flist">${list.map(o => {
+      const open = S.openFeel === o.id;
+      const causes = [...o.causes.values()].sort((a, b) => b.n - a.n).slice(0, 3);
+      const part = [...o.parts].sort((a, b) => b[1] - a[1])[0];
+      const dow = [...o.dows].sort((a, b) => b[1] - a[1])[0];
+      return `<button class="fbar" data-act="feel-open" data-id="${o.id}" aria-expanded="${open}" style="${feelStyle(o.id)}"><span class="fn"><i></i>${FEELINGS[o.id].n}</span><span class="ft"><i style="width:${Math.max(8, Math.round(o.days.length / max * 100))}%"></i></span><span class="fc num">${o.days.length} day${o.days.length === 1 ? '' : 's'}</span></button>
+      ${open ? `<div class="fdet">
+        ${causes.length ? `<p><b>Usually ${feelPrep(o.id, causes[0].prep)}:</b> ${esc(listJoin(causes.map(c => toYou(c.text) + (c.n > 1 ? ` (${c.n}×)` : ''))))}</p>` : '<p class="muted">No clear cause yet.</p>'}
+        ${part && part[1] > 1 ? `<p><b>Most often:</b> ${esc(part[0].toLowerCase())}</p>` : ''}
+        ${dow && dow[1] > 1 ? `<p><b>Shows up most on:</b> ${DOW[dow[0]]}s</p>` : ''}
+        <div class="chips">${o.days.slice(-6).map(d => `<button class="chip acc" data-act="open-entry" data-id="${d.last.id}">${esc(fmtShort(d.day))}</button>`).join('')}</div>
+      </div>` : ''}`;
+    }).join('')}</div>
+    ${arcPills ? `<div class="arcpills"><span class="eyebrow">How your days moved</span><div class="chips">${arcPills}</div></div>` : ''}
+    <span class="small muted">Tap a feeling to see what tends to bring it on.</span></section>`;
 }
 function metricDetail(m, keys, days, val) {
   const facs = aggFactors(days, m.id);
@@ -1824,34 +2787,75 @@ const DIVE_ACTS = {
   social: [['Send one message', 'Text someone you like just to say hi.'], ['Make a small plan', 'Put a coffee or a call in the diary this week.'], ['Notice who fills you up', 'After seeing someone, jot down how you felt.']],
   productivity: [['Make the step tiny', 'Pick the smallest next step on your biggest task and do only that.'], ['Start with the hard bit', 'Spend your first focused hour on the thing you are avoiding.'], ['Close the loops', 'End the day by writing tomorrow’s first task.']]
 };
+const DIVE_FEEL = {
+  joy: { pos: ['happy', 'excited', 'amused', 'proud', 'hopeful', 'grateful', 'loved', 'cosy', 'content'], neg: ['sad', 'disappointed', 'flat', 'bored', 'lonely'] },
+  stress: { pos: ['calm', 'relieved', 'content', 'cosy', 'rested'], neg: ['anxious', 'stressed', 'overwhelmed', 'nervous', 'frustrated', 'annoyed', 'angry', 'restless'] },
+  energy: { pos: ['energised', 'rested', 'excited', 'inspired'], neg: ['tired', 'drained', 'flat', 'bored'] },
+  social: { pos: ['connected', 'loved', 'amused', 'grateful'], neg: ['lonely', 'hurt', 'jealous', 'embarrassed'] },
+  work: { pos: ['focused', 'proud', 'inspired', 'relieved'], neg: ['stressed', 'overwhelmed', 'anxious', 'frustrated', 'bored'] },
+  love: { pos: ['loved', 'connected', 'grateful', 'happy'], neg: ['hurt', 'lonely', 'jealous', 'guilty', 'annoyed'] },
+  family: { pos: ['loved', 'connected', 'grateful', 'happy'], neg: ['hurt', 'guilty', 'annoyed', 'sad', 'anxious'] },
+  health: { pos: ['rested', 'energised', 'calm'], neg: ['tired', 'drained', 'sad'] },
+  habits: { pos: ['focused', 'proud', 'energised'], neg: ['flat', 'restless', 'guilty', 'bored'] },
+  self: { pos: ['proud', 'hopeful', 'content'], neg: ['insecure', 'guilty', 'embarrassed', 'disappointed'] },
+  purpose: { pos: ['hopeful', 'inspired', 'proud', 'grateful'], neg: ['flat', 'bored', 'disappointed'] }
+};
 function quickReport(dive, dm) {
   const days = [...dm.values()].sort((a, b) => a.day.localeCompare(b.day));
+  days.forEach(dayFeel);
   const m = dive.metric, inv = m === 'stress';
+  const DF = DIVE_FEEL[dive.id] || DIVE_FEEL.joy;
   const rel = dive.areas ? days.filter(d => d.areas.some(a => dive.areas.includes(a))) : days;
   const base = rel.length >= 2 ? rel : days;
   const a = avg(base.map(d => d.scores[m]));
   const best = base.slice().sort((x, y) => inv ? x.scores[m] - y.scores[m] : y.scores[m] - x.scores[m])[0];
-  const worst = base.slice().sort((x, y) => inv ? y.scores[m] - x.scores[m] : x.scores[m] - y.scores[m])[0];
+  const nm = MNAME[m].toLowerCase();
+  // which of this dive's feelings came up, and what they were about
+  const count = new Map(), causes = { pos: new Map(), neg: new Map() };
+  for (const d of base) for (const f of d._feel.feel.values()) {
+    const side = DF.pos.includes(f.id) ? 'pos' : DF.neg.includes(f.id) ? 'neg' : null;
+    if (!side) continue;
+    count.set(f.id, (count.get(f.id) || 0) + 1);
+    for (const c of f.causes) { const k = c.text.toLowerCase(); const o = causes[side].get(k) || { text: toYou(c.text), feels: new Set(), n: 0 }; o.n++; o.feels.add(f.id); causes[side].set(k, o); }
+  }
+  const top = [...count].sort((x, y) => y[1] - x[1]);
+  const fmtCause = o => `${capFirst(o.text)}${o.n > 1 ? ` (${o.n} days)` : ''}`;
+  let lifts = [...causes.pos.values()].sort((x, y) => y.n - x.n).slice(0, 4).map(fmtCause);
+  let weighs = [...causes.neg.values()].sort((x, y) => y.n - x.n).slice(0, 4).map(fmtCause);
   const facs = aggFactors(base, m);
-  const lifts = facs.filter(f => inv ? f.sum < 0 : f.sum > 0).sort((x, y) => Math.abs(y.sum) - Math.abs(x.sum)).slice(0, 4).map(f => f.label);
-  const weighs = facs.filter(f => inv ? f.sum > 0 : f.sum < 0).sort((x, y) => Math.abs(y.sum) - Math.abs(x.sum)).slice(0, 4).map(f => f.label);
-  const patterns = [];
+  if (!lifts.length) lifts = facs.filter(f => inv ? f.sum < 0 : f.sum > 0).sort((x, y) => Math.abs(y.sum) - Math.abs(x.sum)).slice(0, 4).map(f => f.label);
+  if (!weighs.length) weighs = facs.filter(f => inv ? f.sum > 0 : f.sum < 0).sort((x, y) => Math.abs(y.sum) - Math.abs(x.sum)).slice(0, 4).map(f => f.label);
+  // patterns: feelings first, then life areas
+  const pats = findPatterns(dm).filter(p => (p.feel && (DF.pos.includes(p.feel) || DF.neg.includes(p.feel))) || p.metric === m).slice(0, 3)
+    .map(p => ({ title: p.title, detail: p.body, dates: (p.dates || []).slice(-5) }));
   for (const ar of AREA_IDS) {
+    if (pats.length >= 3) break;
     const w = days.filter(d => d.areas.includes(ar)), wo = days.filter(d => !d.areas.includes(ar));
     if (w.length < 2 || wo.length < 2) continue;
     const diff = avg(w.map(d => d.scores[m])) - avg(wo.map(d => d.scores[m]));
-    if (Math.abs(diff) >= 1) patterns.push({ diff, title: `${AREAS[ar]} days ${(diff > 0) !== inv ? 'help' : 'cost'} your ${MNAME[m].toLowerCase()}`, detail: `On days that involved ${AREAS[ar].toLowerCase()}, your ${MNAME[m].toLowerCase()} averaged ${r1(avg(w.map(d => d.scores[m])))}, compared with ${r1(avg(wo.map(d => d.scores[m])))} on other days.`, dates: w.slice(-4).map(d => d.day) });
+    if (Math.abs(diff) >= 1) pats.push({ title: `${AREAS[ar]} days ${(diff > 0) !== inv ? 'help' : 'cost'} your ${nm}`, detail: `On days that involved ${AREAS[ar].toLowerCase()}, your ${nm} averaged ${r1(avg(w.map(d => d.scores[m])))}, compared with ${r1(avg(wo.map(d => d.scores[m])))} on other days.`, dates: w.slice(-4).map(d => d.day) });
   }
-  patterns.sort((x, y) => Math.abs(y.diff) - Math.abs(x.diff));
-  const nm = MNAME[m].toLowerCase();
+  // the clearest moments
+  const moments = [];
+  for (const d of base) for (const f of d._feel.feel.values()) if ((DF.pos.includes(f.id) || DF.neg.includes(f.id)) && f.s >= 2) moments.push({ date: d.day, s: f.s, note: `${FEELINGS[f.id].n}${f.causes[0] ? ' ' + toYou(feelPrep(f.id, f.causes[0].prep) + ' ' + f.causes[0].text) : ''}` });
+  moments.sort((x, y) => y.s - x.s || y.date.localeCompare(x.date));
+  const mo = moments.filter((x, i, arr) => arr.findIndex(y => y.date === x.date) === i).slice(0, 5).sort((x, y) => x.date.localeCompare(y.date));
+  const p1 = [`Across ${base.length} day${base.length === 1 ? '' : 's'}${dive.areas && rel.length >= 2 ? ` where ${dive.name.toLowerCase()} came up` : ''}, your ${nm} averaged ${r1(a)} out of 10.`];
+  if (top.length) p1.push(`The feelings that came up most were ${listJoin(top.slice(0, 3).map(([id, n]) => `${FEELINGS[id].adj} (${n} day${n === 1 ? '' : 's'})`))}.`);
+  const tp = [...causes.pos.values()].sort((x, y) => y.n - x.n)[0], tn = [...causes.neg.values()].sort((x, y) => y.n - x.n)[0];
+  const p2 = [];
+  if (tp) p2.push(`The good side usually came with ${tp.text}, which left you ${listJoin([...tp.feels].slice(0, 2).map(id => FEELINGS[id].adj))}.`);
+  if (tn) p2.push(`The harder side was mostly ${tn.text}, with ${listJoin([...tn.feels].slice(0, 2).map(id => FEELINGS[id].adj))}.`);
+  if (!p2.length) p2.push(`There isn't much about ${dive.name.toLowerCase()} in your days yet. Mentioning how it felt, not just what happened, helps Mochi see more.`);
+  if (!TAURI && AI.state !== 'none') p2.push('Inside Claude, Mochi can also write a deeper report from your full entries.');
   return {
-    headline: `Your ${dive.name.toLowerCase()} at a glance`,
-    summary: `Across ${base.length} day${base.length === 1 ? '' : 's'}${dive.areas && rel.length >= 2 ? ` where ${dive.name.toLowerCase()} came up` : ''}, your ${nm} averaged ${r1(a)} out of 10.${lifts.length ? ` It tended to ${inv ? 'ease' : 'rise'} with ${listJoin(lifts.slice(0, 2).map(s => s.toLowerCase()))}.` : ''}${weighs.length ? ` It ${inv ? 'climbed' : 'dipped'} with ${listJoin(weighs.slice(0, 2).map(s => s.toLowerCase()))}.` : ''}\n\nThis is a quick report made on this device. Inside Claude, Mochi reads your full entries and writes a deeper one.`,
-    stats: [{ label: `Average ${nm}`, value: `${r1(a)} / 10` }, { label: inv ? 'Calmest day' : 'Best day', value: fmtShort(best.day) }, { label: dive.areas ? 'Days it came up' : 'Days logged', value: String(dive.areas ? rel.length : days.length) }],
+    headline: top.length ? `Mostly ${FEELINGS[top[0][0]].adj}${top[1] ? ` and ${FEELINGS[top[1][0]].adj}` : ''}` : `Your ${dive.name.toLowerCase()} at a glance`,
+    summary: p1.join(' ') + '\n\n' + p2.join(' '),
+    stats: [{ label: `Average ${nm}`, value: `${r1(a)} / 10` }, top.length ? { label: 'Most common feeling', value: FEELINGS[top[0][0]].n } : { label: dive.areas ? 'Days it came up' : 'Days logged', value: String(base.length) }, { label: inv ? 'Calmest day' : 'Best day', value: fmtShort(best.day) }],
     lifts, weighs,
     actions: (DIVE_ACTS[m] || DIVE_ACTS.joy).map(([title, detail]) => ({ title, detail })),
-    patterns: patterns.slice(0, 3).map(({ diff, ...p }) => p),
-    moments: [best, worst].filter((d, i, arr) => d && arr.indexOf(d) === i).map(d => ({ date: d.day, note: d.last.ai.title }))
+    patterns: pats.slice(0, 4),
+    moments: mo.length ? mo.map(({ date, note }) => ({ date, note })) : [best].map(d => ({ date: d.day, note: d.last.ai.title }))
   };
 }
 async function writeReport(id, force) {
@@ -1930,15 +2934,15 @@ function newComposer() {
   const d = LS.get('draft');
   if (d && d.v === 1 && (Object.values(d.parts || {}).some(v => v && v.trim()) || (d.text || '').trim())) {
     toast('Picked up where you left off');
-    return { id: null, mode: d.mode === 'free' ? 'free' : 'guided', step: clamp(d.step || 0, 0, 4), parts: d.parts || {}, text: d.text || '', day: d.day && d.day <= dayKey() ? d.day : dayKey(), photo: null, photoChanged: false, orig: '' };
+    return { id: null, mode: d.mode === 'free' ? 'free' : 'guided', step: clamp(d.step || 0, 0, 4), parts: d.parts || {}, text: d.text || '', day: d.day && d.day <= dayKey() ? d.day : dayKey(), photo: null, photoChanged: false, orig: '', fix: cleanFix(d.fix) || { add: [], drop: [] } };
   }
-  return { id: null, mode: 'guided', step: 0, parts: {}, text: '', day: dayKey(), photo: null, photoChanged: false, orig: '' };
+  return { id: null, mode: 'guided', step: 0, parts: {}, text: '', day: dayKey(), photo: null, photoChanged: false, orig: '', fix: { add: [], drop: [] } };
 }
 function openComposer(entry) {
   if (layerById('composer')) return;
   if (entry) {
     const guided = entry.mode === 'guided' && entry.parts;
-    C = { id: entry.id, mode: guided ? 'guided' : 'free', step: 0, parts: guided ? clone(entry.parts) : {}, text: guided ? '' : entry.text, day: entry.day, photo: entry.photo ? { thumb: entry.photo.thumb, keep: true } : null, photoChanged: false, orig: entry.text };
+    C = { id: entry.id, mode: guided ? 'guided' : 'free', step: 0, parts: guided ? clone(entry.parts) : {}, text: guided ? '' : entry.text, day: entry.day, photo: entry.photo ? { thumb: entry.photo.thumb, keep: true } : null, photoChanged: false, orig: entry.text, fix: clone(entry.feelFix) || { add: [], drop: [] }, origFix: JSON.stringify(entry.feelFix || null) };
   } else C = newComposer();
   C.snap = composeText();
   openLayer(sheetHTML(composerHead(), `<div class="stack" id="c-body"></div>`, composerFoot()), { id: 'composer' });
@@ -1969,6 +2973,7 @@ function renderComposer() {
       <div class="steps">${STEPS.map((x, i) => `<button class="stp ${(C.parts[x.id] || '').trim() ? 'done' : ''}" data-act="c-step" data-i="${i}" ${i === C.step ? 'aria-current="step"' : ''}>${x.name}</button>`).join('')}</div>
       <div class="q-wrap">${mochiSVG(C.step === 4 ? 'love' : 'idle')}<div class="bubble">${esc(s.q)}</div></div>
       <div class="paper"><textarea class="ta" id="c-ta" data-part="${s.id}" placeholder="Type here, or tap a starter below. Skip anything you like." aria-label="${esc(s.q)}">${esc(C.parts[s.id] || '')}</textarea>${tip}</div>
+      <div class="senses" id="c-senses" aria-live="polite"></div>
       <div class="starters">${s.st.map(t => `<button class="starter" data-act="c-starter" data-t="${esc(t)}">${esc(t.trim())}…</button>`).join('')}</div>
       <div style="display:flex;justify-content:space-between;gap:8px">${C.step > 0 ? `<button class="btn sm ghost" data-act="c-go" data-d="-1">${ic('back')}${STEPS[C.step - 1].name}</button>` : '<span></span>'}${C.step < 4 ? `<button class="btn sm soft" data-act="c-go" data-d="1">${STEPS[C.step + 1].name}${ic('next')}</button>` : ''}</div>
       ${photo}`;
@@ -1976,9 +2981,28 @@ function renderComposer() {
     b.innerHTML = `${seg}
       <div class="q-wrap">${mochiSVG('happy')}<div class="bubble">Start anywhere. Breakfast, a weird dream, the meeting that ran over…</div></div>
       <div class="paper"><textarea class="ta big" id="c-ta" placeholder="Tell me about your day" aria-label="Tell Mochi about your day">${esc(C.text)}</textarea>${tip}</div>
+      <div class="senses" id="c-senses" aria-live="polite"></div>
       ${photo}`;
   }
-  const ta = $('#c-ta', L); grow(ta); updateWC();
+  const ta = $('#c-ta', L); grow(ta); updateWC(); updateSenses();
+}
+let sensesT = 0;
+function sensedNow() {
+  const t = composeText();
+  const got = words(t) >= 3 ? feelRead(t, { known: readCtx().known || [] }).feelings : [];
+  const fx = C.fix || { add: [], drop: [] };
+  const list = got.filter(f => !fx.drop.includes(f.id)).map(f => ({ id: f.id, s: f.s, cause: f.cause, prep: f.prep }));
+  for (const a of fx.add) { const cur = list.find(f => f.id === a.id); if (cur) { cur.s = a.s; cur.mine = true; } else list.push({ id: a.id, s: a.s, mine: true }); }
+  return list;
+}
+function updateSenses(now) {
+  clearTimeout(sensesT);
+  const run = () => {
+    const el = $('#c-senses'); if (!el || !C) return;
+    const list = sensedNow();
+    el.innerHTML = `<span class="sn-l">${ic('heart')}Mochi senses</span>${list.length ? list.map(f => `<span class="fpick on ${f.mine ? 'mine' : ''}" style="${feelStyle(f.id)}"><i></i>${FEELINGS[f.id].n}${f.cause ? `<small>${esc(f.prep && f.prep !== 'about' ? f.prep : 'about')} ${esc(f.cause)}</small>` : ''}<button class="fx" data-act="c-feel-drop" data-id="${f.id}" aria-label="Not ${FEELINGS[f.id].adj}">${ic('x')}</button></span>`).join('') : `<span class="small muted">${words(composeText()) < 3 ? 'Feelings will pop up here as you write.' : 'No feelings yet. How did it feel?'}</span>`}<button class="fpick add" data-act="c-feel-add">${ic('plus')}Add a feeling</button>`;
+  };
+  if (now === true) run(); else sensesT = setTimeout(run, 350);
 }
 function grow(ta) { if (!ta) return; ta.style.height = 'auto'; ta.style.height = Math.max(ta.scrollHeight, ta.classList.contains('big') ? 260 : 150) + 'px'; }
 function updateWC() {
@@ -1991,18 +3015,18 @@ let draftT = 0;
 function saveDraftSoon() {
   if (!C || C.id) return;
   clearTimeout(draftT);
-  draftT = setTimeout(() => { if (C && !C.id) LS.set('draft', { v: 1, mode: C.mode, step: C.step, parts: C.parts, text: C.text, day: C.day }); }, 400);
+  draftT = setTimeout(() => { if (C && !C.id) LS.set('draft', { v: 1, mode: C.mode, step: C.step, parts: C.parts, text: C.text, day: C.day, fix: C.fix }); }, 400);
 }
 function composerCanClose() { return !C || C._closing; }
 async function composerClose() {
   if (!C) return;
-  const changed = composeText() !== C.snap || C.photoChanged;
+  const changed = composeText() !== C.snap || C.photoChanged || (C.id && JSON.stringify(cleanFix(C.fix)) !== C.origFix);
   if (changed && words(composeText())) {
     if (C.id) {
       if (!await confirmBox({ title: 'Discard your changes?', ok: 'Discard', danger: true, cancel: 'Keep editing', expr: 'sad' })) return;
     } else {
       const keep = await confirmBox({ title: 'Keep this as a draft?', text: "It'll be waiting next time you tap the mochi.", ok: 'Keep draft', cancel: 'Discard', expr: 'think' });
-      if (keep) LS.set('draft', { v: 1, mode: C.mode, step: C.step, parts: C.parts, text: C.text, day: C.day }); else LS.del('draft');
+      if (keep) LS.set('draft', { v: 1, mode: C.mode, step: C.step, parts: C.parts, text: C.text, day: C.day, fix: C.fix }); else LS.del('draft');
     }
   }
   C._closing = true; closeLayer(layerById('composer')); C = null;
@@ -2050,7 +3074,10 @@ async function composerSave() {
   let e = C.id ? clone(byId(C.id)) : null;
   const isNew = !e;
   if (isNew) e = { id: uid(), day: C.day, at: now, mode: C.mode, parts: null, text: '', photo: null, ai: null, status: 'ready', rating: 0, note: '', example: false, created: now, updated: now };
+  const fixNow = cleanFix(C.fix);
+  const fixChanged = JSON.stringify(fixNow) !== JSON.stringify(e && e.feelFix || null);
   const changed = isNew || text !== C.orig || e.day !== C.day;
+  e.feelFix = fixNow;
   e.day = C.day; e.mode = C.mode; e.parts = C.mode === 'guided' ? clone(C.parts) : null; e.text = text;
   if (e.day !== dayKey() && isNew) { const d = keyDate(e.day); d.setHours(21, 0, 0, 0); e.at = d.getTime(); }
   if (C.photoChanged) {
@@ -2062,7 +3089,8 @@ async function composerSave() {
       catch (err) { saveErr(err); e.photo = { id: pid, thumb: C.photo.thumb, n: 0 }; }
     }
   }
-  if (changed) { e.ai = quickRead(text); e.status = aiOK() ? 'reading' : 'ready'; e.rating = 0; }
+  if (changed) { e.ai = quickRead(text); applyFix(e); e.status = aiOK() ? 'reading' : 'ready'; e.rating = 0; }
+  else if (fixChanged && e.ai) { if (e.ai.src !== 'claude') e.ai = Object.assign(quickRead(text), { snapshot: e.ai.snapshot }); applyFix(e); }
   const i = S.entries.findIndex(x => x.id === e.id);
   if (i >= 0) S.entries[i] = e; else S.entries.push(e);
   sortEntries();
@@ -2074,7 +3102,7 @@ async function composerSave() {
   if (layerById('reader')) refreshReader();
   const m = $('#hello-mochi .mochi-svg'); if (m) { m.classList.add('boing'); }
   if (changed && aiOK()) readWithMochi(e.id, false);
-  else if (changed) toast(AI.state === 'none' ? 'Saved with a quick read.' : 'Saved.');
+  else if (changed) toast('Saved. Mochi read your day.');
   else toast('Saved.');
 }
 
@@ -2089,7 +3117,7 @@ async function readWithMochi(id, fresh) {
     if (fresh) opts.cache = false;
     const r = await AI.s.json(entryPrompt(e, S.meta, recent), opts);
     const cur = byId(id); if (!cur) return;
-    cur.ai = normAI(r, cur.text); cur.status = 'ready';
+    cur.ai = normAI(r, cur.text); applyFix(cur); cur.status = 'ready';
     await persistEntry(cur);
     if (S.meta.cards && S.meta.cards.day === dayKey() && cur.day === dayKey() && S.meta.cards.src === 'quick') { S.meta.cards = null; S.cardsTried = {}; persistMeta(); }
     render(); refreshReader();
@@ -2120,11 +3148,24 @@ function refreshReader() {
   const edit = L.dataset.edit === '1';
   let h = sceneHTML(e, true);
   h += `<div class="rhead"><span class="eyebrow">${esc(fmtDay(e.day))} · ${esc(fmtTime(e.at))}</span><h2>${esc(a ? a.title : 'Your day')}</h2>
-    <div class="chips">${a && a.src === 'quick' && e.status !== 'reading' ? '<span class="pill" title="Made on this device without Claude">Quick read</span>' : ''}${e.example ? '<span class="pill">Example</span>' : ''}${e.mode === 'guided' ? '<span class="pill">Guided</span>' : ''}</div></div>`;
+    <div class="chips">${a && a.src === 'quick' && e.status !== 'reading' && !TAURI ? '<span class="pill" title="Read on this device, without Claude">Quick read</span>' : ''}${e.example ? '<span class="pill">Example</span>' : ''}${e.mode === 'guided' ? '<span class="pill">Guided</span>' : ''}</div></div>`;
   if (e.status === 'reading') h += `<div class="card thinking">${mochiSVG('think')}<p>Mochi is reading this one…</p></div>`;
   if (e.status === 'pending') h += `<div class="card tight" style="flex-direction:row;align-items:center;gap:12px">${mochiSVG('sad').replace('class="mochi-svg ', 'style="width:60px;height:54px;flex:none" class="mochi-svg ')}<span style="flex:1">Mochi hasn't read this one properly yet.</span><button class="btn sm pri" data-act="reread" data-id="${e.id}">Read it</button></div>`;
   if (a && a.care) h += careBox();
   if (a && a.reply && e.status !== 'reading') h += `<div class="reply">${mochiSVG(a.care ? 'sad' : a.scores.joy >= 7 ? 'happy' : 'love')}<div class="bubble">${esc(a.reply)}</div></div>`;
+  if (a && e.status !== 'reading') {
+    const fl = a.feelings || [];
+    const arc = a.arc;
+    h += `<section class="card feelcard"><div class="card-h"><h2>How you felt</h2>${arc && arc.label && arc.type !== 'quiet' ? `<span class="pill acc">${esc(arc.label)}</span>` : ''}</div>
+      ${arcSVG(arc)}
+      ${fl.length ? `<div class="frows">${fl.map(f => `<div class="frow" style="${feelStyle(f.id)}">
+          <button class="fname" data-act="f-cycle" data-id="${f.id}" aria-label="${FEELINGS[f.id].n}, ${STR_WORD[f.s - 1]}. Tap to change how strongly."><i></i><b>${FEELINGS[f.id].n}</b><span class="str">${STR_WORD[f.s - 1]}</span></button>
+          <span class="fwhy">${f.cause ? esc(capFirst(toYou(feelPrep(f.id, f.prep) + ' ' + f.cause))) : f.part ? esc(f.part) : f.mine ? 'You added this' : ''}</span>
+          <button class="fx" data-act="f-drop" data-id="${f.id}" aria-label="I didn't feel ${FEELINGS[f.id].adj}">${ic('x')}</button>
+        </div>`).join('')}</div>` : `<p class="muted" style="margin:0">Mochi couldn't spot a feeling in this one. Add how it felt and the scores will follow.</p>`}
+      <div class="fadd"><button class="btn sm soft" data-act="f-add">${ic('plus')}Add a feeling</button>${fl.length ? '<span class="small muted">Tap a feeling to change how strong it was, or × if it\'s wrong.</span>' : ''}</div>
+    </section>`;
+  }
   if (a) {
     h += `<section class="card"><div class="card-h"><h2>Snapshot</h2>${edit ? '' : `<button class="btn sm ghost" data-act="r-edit-snap">${ic('edit')}Edit</button>`}</div>
       ${edit ? `<textarea class="edit-ta" id="r-snap" aria-label="Snapshot">${esc(a.snapshot)}</textarea><div style="display:flex;gap:8px;justify-content:flex-end"><button class="btn sm sec" data-act="r-snap-cancel">Cancel</button><button class="btn sm pri" data-act="r-snap-save">Save</button></div>` : `<p class="prose">${esc(a.snapshot)}</p>`}</section>`;
@@ -2151,6 +3192,17 @@ function refreshReader() {
   }
 }
 const photoCache = new Map();
+
+function editFeel(make, msg) {
+  const L = layerById('reader'); const e = L && byId(L.dataset.entry); if (!e || !e.ai) return;
+  const mut = make(e);
+  setFix(e, mut);
+  if (e.ai.src !== 'claude') { const keep = e.ai; e.ai = Object.assign(quickRead(e.text), keep.src === 'example' ? { title: keep.title, reply: keep.reply, animalLine: keep.animalLine, snapshot: keep.snapshot, src: 'example' } : { snapshot: keep.snapshot }); }
+  applyFix(e);
+  if (S.meta.cards && S.meta.cards.src === 'quick') { S.meta.cards = null; S.cardsTried = {}; persistMeta(); }
+  persistEntry(e); refreshReader(); render();
+  if (msg) toast(msg);
+}
 
 /* ================= deep-dive sheet ================= */
 function openDive(id) {
@@ -2198,7 +3250,7 @@ function refreshDive(id) {
     const facs = aggFactors(days, dive.metric).sort((a, b) => Math.abs(b.sum) - Math.abs(a.sum)).slice(0, 6);
     if (facs.length) h += `<section class="card"><div class="card-h"><h2>Biggest factors</h2></div><div class="factors">${facs.map(f => facRow({ area: f.area, label: f.label + (f.n > 1 ? ` ×${f.n}` : ''), effect: clamp(Math.round(f.sum), -9, 9) || (f.sum > 0 ? 1 : -1) })).join('')}</div></section>`;
   }
-  h += `<div style="display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap;padding:0 4px"><span class="small muted">${r.src === 'quick' ? 'Quick report made on this device' : 'Written by Mochi'} · ${esc(new Date(r.at).toLocaleDateString(undefined, { day: 'numeric', month: 'short' }))} · ${r.count} days</span>${n >= DIVE_MIN ? `<button class="btn sm sec" data-act="write-dive" data-id="${id}" data-force="1">${ic('refresh')}${r.count < n ? `Update with ${n - r.count} new day${n - r.count > 1 ? 's' : ''}` : 'Rewrite'}</button>` : ''}</div>`;
+  h += `<div style="display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap;padding:0 4px"><span class="small muted">${r.src === 'quick' ? `Made on this ${TAURI ? HOST : 'device'}` : 'Written by Mochi'} · ${esc(new Date(r.at).toLocaleDateString(undefined, { day: 'numeric', month: 'short' }))} · ${r.count} days</span>${n >= DIVE_MIN ? `<button class="btn sm sec" data-act="write-dive" data-id="${id}" data-force="1">${ic('refresh')}${r.count < n ? `Update with ${n - r.count} new day${n - r.count > 1 ? 's' : ''}` : 'Rewrite'}</button>` : ''}</div>`;
   b.innerHTML = h;
 }
 
@@ -2215,7 +3267,7 @@ function refreshYou() {
   const quick = S.entries.filter(e => !e.example && e.ai && e.ai.src === 'quick' && e.status !== 'reading').length;
   const ai = AI.state === 'ready' ? ['On', 'Mochi reads your days with Claude, using your own Claude account. Only what you write is sent, and only when Mochi reads it.']
     : AI.state === 'off' ? ['Off in this view', "Claude wasn't allowed, so Mochi does quick reads on this device. Reload the page to be asked again."]
-    : AI.state === 'wait' ? ['Checking…', 'Looking for Claude.'] : TAURI ? ['Quick reads', `Mochi reads your days right here on your ${HOST}, so nothing you write leaves it. Smart reads with Claude happen when Mochi Diary is opened inside Claude.`] : ['Quick reads only', 'Open Mochi Diary inside Claude for smart reads, cards and deep dives. Quick reads work anywhere.'];
+    : AI.state === 'wait' ? ['Checking…', 'Looking for Claude.'] : TAURI ? ['On this ' + HOST, `Mochi reads your feelings, what caused them and how each day moved right here on your ${HOST}, so nothing you write leaves it.`] : ['On this device', 'Mochi reads your feelings on this device. Inside Claude, it can also use Claude for deeper reads.'];
   const where = S.store.kind === 'cloud' ? 'Saved privately to your Claude account, so it follows you across devices. Nobody else who opens this page can see it.' : S.store.kind === 'file' ? `Saved as files on this ${HOST}, in Mochi Diary\u2019s own folder. Photos are kept as ordinary images.` : TAURI ? "Your diary folder couldn't be opened, so this window isn't saving. Quit and reopen Mochi Diary." : 'Saved in this browser only. Open Mochi Diary inside Claude to keep it in your account.';
   const flv = FLAVORS.map(f => `<button class="flv flv-${f.id}" data-act="flavor" data-f="${f.id}" aria-pressed="${M.flavor === f.id}">${mochiSVG('happy')}${f.name}</button>`).join('');
   $('#y-body', L).innerHTML = `
@@ -2230,7 +3282,7 @@ function refreshYou() {
       ${M.pinHash ? `<div class="srow2 col"><span class="lbl">Ask again</span><div class="seg" role="group" aria-label="Ask for the code">${[[0, 'Right away'], [5, 'After 5 min'], [15, 'After 15 min']].map(([k, l]) => `<button data-act="lock-after" data-v="${k}" aria-pressed="${M.lockAfter === k}">${l}</button>`).join('')}</div></div>` : ''}
     </div>
     <div class="grp">
-      <div class="srow2">${ic('sparkle')}<span class="t"><b>Smart reads: ${ai[0]}</b><span>${ai[1]}</span></span></div>
+      <div class="srow2">${ic('sparkle')}<span class="t"><b>${TAURI || AI.state === 'none' ? 'Reading your days' : 'Smart reads'}: ${ai[0]}</b><span>${ai[1]}</span></span></div>
       ${quick && aiOK() ? `<button class="srow2" data-act="reread-quick">${ic('refresh')}<span class="t"><b>Read ${quick} quick-read day${quick > 1 ? 's' : ''} properly</b><span>Mochi reads them one at a time</span></span></button>` : ''}
       <div class="srow2">${ic('diary')}<span class="t"><b>Where your diary lives</b><span>${where}</span></span></div>
       ${S.store.kind === 'file' && !ON_ANDROID ? `<button class="srow2" data-act="show-folder">${ic('folder')}<span class="t"><b>Show in ${FOLDER_APP}</b><span>Open the folder that holds your days and photos</span></span></button>` : ''}
@@ -2452,6 +3504,7 @@ const ACT = {
     const L = layerById('reader'); const e = L && byId(L.dataset.entry); if (!e) return;
     const items = [{ ic: 'edit', label: 'Edit entry', run: () => openComposer(e) }];
     if (aiOK() && e.status !== 'reading') items.push({ ic: 'refresh', label: 'Ask Mochi to read again', run: () => readWithMochi(e.id, true) });
+    else if (!e.example && e.status !== 'reading') items.push({ ic: 'refresh', label: 'Read it again', run: () => { const snap = e.ai && e.ai.snapshot; e.ai = quickRead(e.text); if (snap && e.ai.src === 'quick' && snap !== e.ai.snapshot && e.rating) e.ai.snapshot = snap; applyFix(e); persistEntry(e); refreshReader(); render(); toast('Mochi read it again.'); } });
     items.push({ ic: 'trash', label: 'Delete', danger: true, run: async () => {
       if (!await confirmBox({ title: 'Delete this day?', text: "This entry and its photo will be gone for good.", ok: 'Delete', danger: true, expr: 'sad' })) return;
       S.entries = S.entries.filter(x => x.id !== e.id);
@@ -2467,6 +3520,15 @@ const ACT = {
   rate: el => { const L = layerById('reader'); const e = byId(L.dataset.entry); if (!e) return; const v = +el.dataset.v; e.rating = e.rating === v ? 0 : v; persistEntry(e); refreshReader(); },
   'r-note-save': () => { const L = layerById('reader'); const e = byId(L.dataset.entry); if (!e) return; e.note = $('#r-note').value.trim().slice(0, 600); persistEntry(e); refreshReader(); toast('Note saved.'); },
   'r-note-read': () => { const L = layerById('reader'); const e = byId(L.dataset.entry); if (!e) return; e.note = $('#r-note').value.trim().slice(0, 600); e.rating = 0; persistEntry(e); readWithMochi(e.id, true); },
+  'f-cycle': el => editFeel(f => { const cur = (f.ai.feelings || []).find(x => x.id === el.dataset.id); const s2 = cur ? cur.s % 3 + 1 : 2; return fx => { fx.add = fx.add.filter(x => x.id !== el.dataset.id); fx.add.push({ id: el.dataset.id, s: s2 }); fx.drop = fx.drop.filter(x => x !== el.dataset.id); }; }),
+  'f-drop': el => editFeel(() => fx => { fx.add = fx.add.filter(x => x.id !== el.dataset.id); if (!fx.drop.includes(el.dataset.id)) fx.drop.push(el.dataset.id); }, 'Removed. Mochi will remember.'),
+  'f-add': () => {
+    const L = layerById('reader'); const e = L && byId(L.dataset.entry); if (!e) return;
+    openFeelPicker('How did you feel?', id => editFeel(() => fx => { fx.drop = fx.drop.filter(x => x !== id); fx.add = fx.add.filter(x => x.id !== id); fx.add.push({ id, s: 2 }); }, `Added ${FEELINGS[id].adj}.`), (e.ai.feelings || []).map(f => f.id));
+  },
+  'c-feel-drop': el => { if (!C) return; const id = el.dataset.id; C.fix.add = C.fix.add.filter(x => x.id !== id); if (!C.fix.drop.includes(id)) C.fix.drop.push(id); updateSenses(true); saveDraftSoon(); },
+  'c-feel-add': () => { if (!C) return; openFeelPicker('How did you feel?', id => { if (!C) return; C.fix.drop = C.fix.drop.filter(x => x !== id); if (!C.fix.add.some(x => x.id === id)) C.fix.add.push({ id, s: 2 }); updateSenses(true); saveDraftSoon(); }, sensedNow().map(f => f.id)); },
+  'feel-open': el => { S.openFeel = S.openFeel === el.dataset.id ? null : el.dataset.id; render(); },
   // you
   tone: el => { S.meta.tone = el.dataset.t; persistMeta(); refreshYou(); },
   flavor: el => { S.meta.flavor = el.dataset.f; applyLook(); persistMeta(); refreshYou(); },
@@ -2508,7 +3570,7 @@ function onInput(ev) {
   const t = ev.target;
   if (t.id === 'c-ta' && C) {
     if (C.mode === 'guided') C.parts[t.dataset.part] = t.value; else C.text = t.value;
-    grow(t); updateWC(); saveDraftSoon();
+    grow(t); updateWC(); saveDraftSoon(); updateSenses();
     if (C.mode === 'guided') { const b = $(`.stp[data-i="${C.step}"]`); if (b) b.classList.toggle('done', !!t.value.trim()); }
   } else if (t.id === 'y-name' || t.id === 'y-notes') {
     S.meta[t.id === 'y-name' ? 'name' : 'notes'] = t.value;
@@ -2598,8 +3660,37 @@ async function start(store) {
   for (const e of S.entries) if (e.status === 'reading' && Date.now() - e.updated > 180000) e.status = 'pending';
   sortEntries();
   S.reports = {}; for (const r of d.reports || []) if (r && r.id && r.data) S.reports[r.id] = r;
+  const upgraded = upgradeReads();
   applyLook(); render();
+  if (upgraded.length) setTimeout(async () => {
+    for (const e of upgraded) await S.store.putEntry(e).catch(() => {});
+    for (const id of Object.keys(S.reports)) if (S.reports[id].src === 'quick') { delete S.reports[id]; S.store.delReport(id).catch(() => {}); }
+    if (S.meta.cards && S.meta.cards.src === 'quick') { S.meta.cards = null; S.cardsTried = {}; persistMeta(); }
+    const n = upgraded.filter(e => !e.example).length;
+    if (n) toast(`Mochi re-read ${n} day${n === 1 ? '' : 's'} for feelings.`);
+  }, 700);
   if (store.subscribe) store.subscribe(onRemoteEntries, onRemoteMeta);
+}
+// Days saved before the feelings reader get read again: quick reads in full, Claude reads just for feelings.
+function upgradeReads() {
+  const out = [];
+  for (const e of S.entries) {
+    const a = e.ai;
+    if (!a || e.status === 'reading' || a.v === 2) continue;
+    if (a.src === 'quick') {
+      const fresh = quickRead(e.text);
+      const plain = clip(String(e.text).replace(STEP_LABEL_RE, '').trim(), 520);
+      if (a.snapshot && a.snapshot !== plain) fresh.snapshot = a.snapshot;
+      fresh.at = a.at || fresh.at;
+      e.ai = fresh;
+    } else {
+      const r = feelRead(e.text, { known: readCtx().known || [] });
+      Object.assign(a, { feelings: r.feelings, arc: r.arc, topics: r.topics, hedge: r.hedge, v: 2 });
+    }
+    applyFix(e);
+    out.push(e);
+  }
+  return out;
 }
 async function mergeLocal(local, cloud) {
   let d; try { d = await local.init(); } catch { return; }
